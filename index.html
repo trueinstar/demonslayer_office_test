@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>귀멸의 칼날 직장인 성격 테스트</title>
+    <title>귀멸의 칼날 직장인 버전 테스트</title>
     <style>
         * {
             margin: 0;
@@ -12,123 +12,111 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .page {
-            display: none;
             background: white;
             border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .start-screen, .question-screen, .result-screen {
             text-align: center;
         }
 
-        .page.active {
-            display: block;
-        }
-
-        .start-page img {
-            width: 100%;
-            max-width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 30px;
+        .hidden {
+            display: none;
         }
 
         h1 {
-            font-size: 2.5rem;
+            color: #333;
+            font-size: 2em;
             margin-bottom: 20px;
-            color: #2c3e50;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .question-container {
-            margin-bottom: 30px;
-        }
-
-        .question-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-
-        .question-text {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .answers {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .answer-btn {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            padding: 15px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            font-size: 1rem;
             line-height: 1.4;
         }
 
-        .answer-btn:hover {
-            background: #e3f2fd;
-            border-color: #2196f3;
-            transform: translateY(-1px);
+        .main-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .answer-btn.selected {
-            background: #e8f5e8;
-            border-color: #4caf50;
-            color: #2e7d32;
+        .start-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .question-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .answer-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateX(5px);
         }
 
         .navigation {
@@ -138,19 +126,17 @@
         }
 
         .nav-btn {
-            background: #6c757d;
-            color: white;
+            padding: 10px 20px;
+            background: #e0e0e0;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
 
         .nav-btn:hover:not(:disabled) {
-            background: #5a6268;
-            transform: translateY(-1px);
+            background: #667eea;
+            color: white;
         }
 
         .nav-btn:disabled {
@@ -160,657 +146,657 @@
 
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            margin-bottom: 30px;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
             overflow: hidden;
         }
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
-            border-radius: 4px;
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 5px;
+            transition: width 0.3s;
         }
 
-        .result-page {
-            text-align: center;
+        .result-title {
+            color: #667eea;
+            font-size: 1.5em;
+            margin: 20px 0;
         }
 
-        .character-name {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-
-        .character-title {
-            font-size: 1.5rem;
-            color: #e74c3c;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .character-subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-
-        .character-image {
-            width: 100%;
-            max-width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .character-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #555;
-            text-align: left;
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #e74c3c;
-        }
-
-        .compatibility-section {
-            margin: 40px 0;
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-        }
-
-        .compatibility-title {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-
-        .compatibility-row {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+        .result-subtitle {
+            color: #666;
+            font-size: 1.1em;
             margin-bottom: 20px;
         }
 
-        .compatibility-item {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
+        .result-description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: left;
         }
 
-        .compatibility-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .compatibility-section {
+            margin: 30px 0;
         }
 
-        .compatibility-label {
-            font-weight: bold;
-            margin-bottom: 5px;
+        .compatibility-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
         }
 
-        .good-match {
-            color: #27ae60;
-        }
-
-        .bad-match {
-            color: #e74c3c;
-        }
-
-        .result-buttons {
+        .compatibility-images {
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
+            margin: 15px 0;
         }
 
-        .emoji {
-            font-size: 2rem;
-            margin-right: 10px;
+        .compat-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
         }
 
-        @media (max-width: 768px) {
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .retry-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .share-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .character-emoji {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
             .container {
-                padding: 15px;
-            }
-            
-            .page {
-                padding: 25px;
+                padding: 20px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.5em;
             }
             
-            .start-page img,
-            .character-image {
-                max-width: 300px;
-                height: 300px;
+            .main-image {
+                max-width: 100%;
             }
             
-            .compatibility-image {
+            .compat-img {
                 width: 120px;
                 height: 120px;
-            }
-            
-            .result-buttons {
-                flex-direction: column;
-                align-items: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 시작 페이지 -->
-        <div id="startPage" class="page active start-page">
-            <img src="images/start/main.jpg" alt="귀멸의 칼날 직장인 테스트" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuq3gOuvuOydmCDsvbXrgqAg7YWM7Iqk7Yq4PC90ZXh0Pjwvc3ZnPg=='" />
-            <h1>🗾 귀멸의 칼날 직장인 성격 테스트</h1>
-            <div class="subtitle">
-                당신은 어떤 직장인 캐릭터와 닮았을까요?<br>
-                12가지 질문을 통해 알아보세요!
-            </div>
-            <button class="btn" onclick="startTest()">테스트 시작하기</button>
+        <!-- 시작 화면 -->
+        <div class="start-screen" id="startScreen">
+            <h1>귀멸의 칼날<br>직장인 버전 테스트</h1>
+            <p style="color: #666; margin-bottom: 20px;">나는 어떤 직장인 유형일까?</p>
+            <img src="images/start/main.jpg" alt="메인 이미지" class="main-image" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div style=\'width:100%;max-width:500px;height:500px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;margin:20px auto;display:flex;align-items:center;justify-content:center;color:white;font-size:2em;\'>귀멸의 칼날<br>직장인 테스트</div>')">
+            <button class="start-btn" onclick="startTest()">테스트 시작하기</button>
         </div>
 
-        <!-- 질문 페이지 -->
-        <div id="questionPage" class="page">
+        <!-- 질문 화면 -->
+        <div class="question-screen hidden" id="questionScreen">
             <div class="progress-bar">
                 <div class="progress" id="progressBar"></div>
             </div>
             <div class="question-container">
-                <div class="question-title" id="questionNumber"></div>
-                <div class="question-text" id="questionText"></div>
-                <div class="answers" id="answers"></div>
+                <div class="question-number" id="questionNumber"></div>
+                <div class="question" id="questionText"></div>
+                <div id="answersContainer"></div>
             </div>
             <div class="navigation">
-                <button class="nav-btn" id="prevBtn" onclick="previousQuestion()">이전</button>
+                <button class="nav-btn" id="prevBtn" onclick="prevQuestion()">이전</button>
                 <button class="nav-btn" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
             </div>
         </div>
 
-        <!-- 결과 페이지 -->
-        <div id="resultPage" class="page result-page">
-            <div class="character-name" id="characterName"></div>
-            <div class="character-title" id="characterTitle"></div>
-            <div class="character-subtitle" id="characterSubtitle"></div>
-            <img class="character-image" id="characterImage" />
-            <div class="character-description" id="characterDescription"></div>
+        <!-- 결과 화면 -->
+        <div class="result-screen hidden" id="resultScreen">
+            <h1 id="characterName"></h1>
+            <div class="result-title" id="characterTitle"></div>
+            <div class="result-subtitle" id="characterSubtitle"></div>
+            <div class="character-emoji" id="characterEmoji"></div>
+            <img id="resultImage" class="main-image" alt="결과 이미지">
+            <div class="result-description" id="characterDescription"></div>
             
             <div class="compatibility-section">
-                <div class="compatibility-title">💡 궁합 분석</div>
-                <div class="compatibility-row">
-                    <div class="compatibility-item">
-                        <div class="compatibility-label good-match">✅ 잘 맞는 성향</div>
-                        <img class="compatibility-image" id="goodMatchImage" />
-                        <div id="goodMatchName"></div>
-                    </div>
-                    <div class="compatibility-item">
-                        <div class="compatibility-label bad-match">❌ 안 맞는 성향</div>
-                        <img class="compatibility-image" id="badMatchImage" />
-                        <div id="badMatchName"></div>
-                    </div>
-                </div>
+                <div class="compatibility-title">🎯 나와 찰떡 궁합</div>
+                <div class="compatibility-images" id="goodCompatibility"></div>
             </div>
-
-            <div class="result-buttons">
-                <button class="btn" onclick="restartTest()">다시 테스트하기</button>
-                <button class="btn" onclick="shareResult()">친구에게 공유하기</button>
+            
+            <div class="compatibility-section">
+                <div class="compatibility-title">⚡ 나와 상극 궁합</div>
+                <div class="compatibility-images" id="badCompatibility"></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn retry-btn" onclick="retryTest()">다시 테스트하기</button>
+                <button class="action-btn share-btn" onclick="shareResult()">친구에게 공유하기</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 캐릭터 데이터
+        const questions = [
+            {
+                question: "프로젝트 데드라인이 다가올 때 당신의 스타일은?",
+                answers: [
+                    { text: "팀원들과 함께 밤을 새워서라도 완성한다", points: { tanjiro: 3, rengoku: 2, mitsuri: 1 } },
+                    { text: "철저한 계획과 시간 관리로 여유롭게 마감한다", points: { shinobu: 3, giyu: 2, muichiro: 1 } },
+                    { text: "마지막 순간에 놀라운 집중력을 발휘한다", points: { zenitsu: 3, muichiro: 2, inosuke: 1 } },
+                    { text: "남들보다 더 높은 목표를 세우고 초과 달성한다", points: { muzan: 3, akaza: 2, sanemi: 1 } }
+                ]
+            },
+            {
+                question: "회의 중 의견 충돌이 생겼을 때 당신은?",
+                answers: [
+                    { text: "중재자 역할을 하며 모두의 의견을 조율한다", points: { tanjiro: 3, gyomei: 2, mitsuri: 1 } },
+                    { text: "데이터와 논리로 객관적인 해결책을 제시한다", points: { giyu: 3, shinobu: 2, iguro: 1 } },
+                    { text: "내 의견을 강하게 주장하고 관철시킨다", points: { inosuke: 3, sanemi: 2, akaza: 1 } },
+                    { text: "조용히 듣다가 핵심을 찌르는 한 마디를 한다", points: { nezuko: 3, muichiro: 2, giyu: 1 } }
+                ]
+            },
+            {
+                question: "신입사원이 실수를 했을 때 당신의 반응은?",
+                answers: [
+                    { text: "격려하며 함께 해결 방법을 찾아준다", points: { tanjiro: 3, mitsuri: 2, rengoku: 1 } },
+                    { text: "실수의 원인을 분석하고 재발 방지책을 세운다", points: { shinobu: 3, iguro: 2, zenitsu: 1 } },
+                    { text: "엄격하게 지적하고 다시는 일어나지 않도록 한다", points: { sanemi: 3, muzan: 2, akaza: 1 } },
+                    { text: "별 말 없이 내가 직접 처리한다", points: { giyu: 3, nezuko: 2, muichiro: 1 } }
+                ]
+            },
+            {
+                question: "팀 회식 자리에서 당신의 모습은?",
+                answers: [
+                    { text: "분위기 메이커로 모두를 즐겁게 한다", points: { rengoku: 3, tengen: 2, mitsuri: 1 } },
+                    { text: "적당히 참여하다가 일찍 빠진다", points: { giyu: 3, muichiro: 2, iguro: 1 } },
+                    { text: "술 마시며 평소 못했던 속마음을 털어놓는다", points: { zenitsu: 3, sanemi: 2, inosuke: 1 } },
+                    { text: "조용히 듣고 있다가 필요할 때만 이야기한다", points: { nezuko: 3, gyomei: 2, shinobu: 1 } }
+                ]
+            },
+            {
+                question: "새로운 업무를 배정받았을 때 첫 반응은?",
+                answers: [
+                    { text: "도전적이네! 새로운 걸 배울 수 있겠다", points: { inosuke: 3, rengoku: 2, tengen: 1 } },
+                    { text: "체계적으로 계획을 세우고 차근차근 진행한다", points: { shinobu: 3, giyu: 2, gyomei: 1 } },
+                    { text: "걱정부터 하지만 결국은 완벽하게 해낸다", points: { zenitsu: 3, muichiro: 2, nezuko: 1 } },
+                    { text: "이 일이 조직에 어떤 가치를 줄지 먼저 생각한다", points: { muzan: 3, akaza: 2, iguro: 1 } }
+                ]
+            },
+            {
+                question: "칭찬을 받았을 때 당신의 반응은?",
+                answers: [
+                    { text: "팀원들과 함께 이뤄낸 성과라고 겸손하게 말한다", points: { tanjiro: 3, gyomei: 2, nezuko: 1 } },
+                    { text: "당연한 결과다! 더 높은 목표를 향해 간다", points: { inosuke: 3, tengen: 2, akaza: 1 } },
+                    { text: "쑥스러워하며 얼른 화제를 돌린다", points: { zenitsu: 3, mitsuri: 2, nezuko: 1 } },
+                    { text: "무덤덤하게 받아들이고 다음 일에 집중한다", points: { giyu: 3, muichiro: 2, sanemi: 1 } }
+                ]
+            },
+            {
+                question: "스트레스가 심할 때 당신의 해소법은?",
+                answers: [
+                    { text: "운동이나 액티비티로 땀을 흘린다", points: { inosuke: 3, sanemi: 2, rengoku: 1 } },
+                    { text: "혼자만의 시간을 가지며 충전한다", points: { giyu: 3, muichiro: 2, nezuko: 1 } },
+                    { text: "친한 사람들과 수다 떨며 스트레스를 푼다", points: { mitsuri: 3, zenitsu: 2, tengen: 1 } },
+                    { text: "일에 더 몰입해서 스트레스를 잊는다", points: { muzan: 3, akaza: 2, iguro: 1 } }
+                ]
+            },
+            {
+                question: "중요한 프레젠테이션을 앞두고 있을 때?",
+                answers: [
+                    { text: "화려한 비주얼과 임팩트 있는 스토리로 준비한다", points: { tengen: 3, rengoku: 2, mitsuri: 1 } },
+                    { text: "데이터와 논리로 무장한 완벽한 자료를 만든다", points: { shinobu: 3, giyu: 2, iguro: 1 } },
+                    { text: "긴장되지만 순간의 집중력으로 승부한다", points: { zenitsu: 3, muichiro: 2, tanjiro: 1 } },
+                    { text: "압도적인 카리스마로 청중을 사로잡는다", points: { muzan: 3, akaza: 2, sanemi: 1 } }
+                ]
+            },
+            {
+                question: "팀 프로젝트에서 선호하는 역할은?",
+                answers: [
+                    { text: "모두를 이끄는 리더 역할", points: { rengoku: 3, muzan: 2, tanjiro: 1 } },
+                    { text: "꼼꼼한 품질 관리 및 검토 역할", points: { zenitsu: 3, iguro: 2, shinobu: 1 } },
+                    { text: "창의적인 아이디어 제안 역할", points: { tengen: 3, muichiro: 2, inosuke: 1 } },
+                    { text: "묵묵히 실무를 처리하는 역할", points: { nezuko: 3, giyu: 2, gyomei: 1 } }
+                ]
+            },
+            {
+                question: "실패했을 때 당신의 대처법은?",
+                answers: [
+                    { text: "실패에서 배우고 더 강해져서 돌아온다", points: { tanjiro: 3, rengoku: 2, akaza: 1 } },
+                    { text: "철저히 분석해서 같은 실수를 반복하지 않는다", points: { shinobu: 3, giyu: 2, iguro: 1 } },
+                    { text: "좌절하지만 주변의 도움으로 다시 일어선다", points: { zenitsu: 3, mitsuri: 2, nezuko: 1 } },
+                    { text: "실패를 인정하지 않고 더 큰 목표를 세운다", points: { muzan: 3, inosuke: 2, sanemi: 1 } }
+                ]
+            },
+            {
+                question: "동료가 힘들어할 때 당신은?",
+                answers: [
+                    { text: "진심으로 공감하고 위로해준다", points: { tanjiro: 3, mitsuri: 2, gyomei: 1 } },
+                    { text: "실질적인 해결책을 제시해준다", points: { shinobu: 3, giyu: 2, nezuko: 1 } },
+                    { text: "함께 신나게 놀며 기분전환을 시켜준다", points: { inosuke: 3, tengen: 2, rengoku: 1 } },
+                    { text: "각자 알아서 해결해야 한다고 생각한다", points: { muzan: 3, sanemi: 2, iguro: 1 } }
+                ]
+            },
+            {
+                question: "이상적인 직장 문화는?",
+                answers: [
+                    { text: "가족 같은 분위기의 따뜻한 직장", points: { tanjiro: 3, mitsuri: 2, nezuko: 1 } },
+                    { text: "개인의 전문성을 존중하는 직장", points: { giyu: 3, muichiro: 2, shinobu: 1 } },
+                    { text: "열정적이고 도전적인 직장", points: { rengoku: 3, inosuke: 2, tengen: 1 } },
+                    { text: "성과 중심의 경쟁적인 직장", points: { muzan: 3, akaza: 2, sanemi: 1 } }
+                ]
+            }
+        ];
+
         const characters = {
             tanjiro: {
                 name: '카마도 탄지로',
                 title: '팀워크의 달인',
                 subtitle: '프로젝트 매니저',
                 emoji: '🌱',
-                description: '당신은 팀워크를 중시하고 모든 구성원을 배려하는 완벽한 프로젝트 매니저입니다. 어려운 상황에서도 포기하지 않는 끈기와 팀원들을 하나로 묶는 특별한 능력을 가지고 있습니다. 갈등 상황에서는 중재자 역할을 하며, 항상 긍정적인 에너지로 팀 분위기를 이끌어갑니다.'
+                description: '당신은 팀워크를 중시하고 모든 구성원을 배려하는 완벽한 프로젝트 매니저입니다. 어려운 상황에서도 포기하지 않는 끈기와 팀원들을 하나로 묶는 특별한 능력을 가지고 있습니다. 갈등 상황에서는 중재자 역할을 하며, 항상 긍정적인 에너지로 팀 분위기를 이끌어갑니다.',
+                compatible: ['nezuko', 'mitsuri'],
+                incompatible: ['muzan', 'sanemi']
             },
             nezuko: {
                 name: '카마도 네즈코',
                 title: '묵묵한 지원자',
                 subtitle: '백오피스 전문가',
                 emoji: '🌸',
-                description: '당신은 말보다는 행동으로 보여주는 신뢰할 수 있는 백오피스 전문가입니다. 화려하지 않지만 꼭 필요한 업무를 완벽하게 처리하며, 팀원들이 안심하고 일할 수 있는 든든한 지원을 제공합니다. 조용하지만 강한 의지력으로 어떤 난관도 극복해냅니다.'
+                description: '당신은 말보다는 행동으로 보여주는 신뢰할 수 있는 백오피스 전문가입니다. 화려하지 않지만 꼭 필요한 업무를 완벽하게 처리하며, 팀원들이 안심하고 일할 수 있는 든든한 지원을 제공합니다. 조용하지만 강한 의지력으로 어떤 난관도 극복해냅니다.',
+                compatible: ['tanjiro', 'giyu'],
+                incompatible: ['tengen', 'inosuke']
             },
             zenitsu: {
                 name: '아가츠마 젠이츠',
                 title: '완벽주의자',
                 subtitle: '품질관리 전문가',
                 emoji: '⚡',
-                description: '당신은 디테일에 강하고 품질에 대한 높은 기준을 가진 완벽주의자입니다. 평소에는 걱정이 많지만, 중요한 순간에는 놀라운 집중력과 전문성을 발휘합니다. 실수를 용납하지 않는 철저함으로 최고 품질의 결과물을 만들어냅니다.'
+                description: '당신은 디테일에 강하고 품질에 대한 높은 기준을 가진 완벽주의자입니다. 평소에는 걱정이 많지만, 중요한 순간에는 놀라운 집중력과 전문성을 발휘합니다. 실수를 용납하지 않는 철저함으로 최고 품질의 결과물을 만들어냅니다.',
+                compatible: ['shinobu', 'mitsuri'],
+                incompatible: ['inosuke', 'sanemi']
             },
             inosuke: {
                 name: '하시비라 이노스케',
                 title: '도전정신 넘치는',
                 subtitle: '영업팀 에이스',
                 emoji: '🐗',
-                description: '당신은 넘치는 에너지와 도전정신으로 무장한 영업팀의 에이스입니다. 어떤 어려운 고객이라도 정면승부로 돌파하며, 경쟁 상황에서 더욱 빛을 발합니다. 때로는 무모해 보일 수 있지만, 그 열정과 추진력으로 불가능을 가능하게 만듭니다.'
+                description: '당신은 넘치는 에너지와 도전정신으로 무장한 영업팀의 에이스입니다. 어떤 어려운 고객이라도 정면승부로 돌파하며, 경쟁 상황에서 더욱 빛을 발합니다. 때로는 무모해 보일 수 있지만, 그 열정과 추진력으로 불가능을 가능하게 만듭니다.',
+                compatible: ['tanjiro', 'rengoku'],
+                incompatible: ['giyu', 'nezuko']
             },
             giyu: {
                 name: '토미오카 기유',
                 title: '냉철한 분석가',
                 subtitle: '전략기획팀장',
                 emoji: '🌊',
-                description: '당신은 감정에 휘둘리지 않고 냉철하게 상황을 분석하는 전략기획 전문가입니다. 말수는 적지만 핵심을 정확히 파악하고, 논리적이고 체계적인 접근으로 최적의 해결책을 제시합니다. 혼자서도 묵묵히 성과를 만들어내는 독립적인 업무 스타일을 가지고 있습니다.'
+                description: '당신은 감정에 휘둘리지 않고 냉철하게 상황을 분석하는 전략기획 전문가입니다. 말수는 적지만 핵심을 정확히 파악하고, 논리적이고 체계적인 접근으로 최적의 해결책을 제시합니다. 혼자서도 묵묵히 성과를 만들어내는 독립적인 업무 스타일을 가지고 있습니다.',
+                compatible: ['nezuko', 'muichiro'],
+                incompatible: ['tengen', 'mitsuri']
             },
             rengoku: {
                 name: '렌고쿠 쿄쥬로',
                 title: '열정적인 리더',
                 subtitle: '팀장',
                 emoji: '🔥',
-                description: '당신은 불타는 열정으로 팀을 이끄는 천생 리더입니다. 긍정적인 에너지와 강한 신념으로 팀원들에게 영감을 주며, 어려운 상황에서도 희망을 잃지 않습니다. 솔선수범하는 모습으로 팀원들의 존경을 받고, 모든 사람의 성장을 진심으로 응원합니다.'
+                description: '당신은 불타는 열정으로 팀을 이끄는 천생 리더입니다. 긍정적인 에너지와 강한 신념으로 팀원들에게 영감을 주며, 어려운 상황에서도 희망을 잃지 않습니다. 솔선수범하는 모습으로 팀원들의 존경을 받고, 모든 사람의 성장을 진심으로 응원합니다.',
+                compatible: ['inosuke', 'mitsuri'],
+                incompatible: ['muzan', 'akaza']
             },
             tengen: {
                 name: '우즈이 텐겐',
                 title: '화려한 크리에이터',
                 subtitle: '마케팅 디렉터',
                 emoji: '💎',
-                description: '당신은 창의성과 화려함을 겸비한 마케팅의 달인입니다. 독특하고 임팩트 있는 아이디어로 사람들의 관심을 사로잡으며, 트렌드를 선도하는 감각을 가지고 있습니다. 자신감 넘치는 스타일로 브랜드의 가치를 높이고, 시장에서 차별화된 포지션을 만들어냅니다.'
+                description: '당신은 창의성과 화려함을 겸비한 마케팅의 달인입니다. 독특하고 임팩트 있는 아이디어로 사람들의 관심을 사로잡으며, 트렌드를 선도하는 감각을 가지고 있습니다. 자신감 넘치는 스타일로 브랜드의 가치를 높이고, 시장에서 차별화된 포지션을 만들어냅니다.',
+                compatible: ['shinobu', 'mitsuri'],
+                incompatible: ['giyu', 'muichiro']
             },
             shinobu: {
                 name: '코쵸 시노부',
                 title: '전략적 기획자',
                 subtitle: '경영전략팀',
                 emoji: '🦋',
-                description: '당신은 우아하면서도 날카로운 통찰력을 가진 전략적 사고의 전문가입니다. 겉으로는 부드럽지만 속으로는 치밀하게 계획을 세우며, 상대방의 심리를 정확히 파악하여 최적의 전략을 수립합니다. 복잡한 상황에서도 침착하게 핵심을 찾아내는 능력이 뛰어납니다.'
+                description: '당신은 우아하면서도 날카로운 통찰력을 가진 전략적 사고의 전문가입니다. 겉으로는 부드럽지만 속으로는 치밀하게 계획을 세우며, 상대방의 심리를 정확히 파악하여 최적의 전략을 수립합니다. 복잡한 상황에서도 침착하게 핵심을 찾아내는 능력이 뛰어납니다.',
+                compatible: ['zenitsu', 'tengen'],
+                incompatible: ['inosuke', 'rengoku']
             },
             muichiro: {
                 name: '토키토 무이치로',
                 title: '집중력의 달인',
                 subtitle: '개발자',
                 emoji: '☁️',
-                description: '당신은 놀라운 집중력으로 복잡한 문제를 해결하는 개발 전문가입니다. 주변의 소음에 흔들리지 않고 자신만의 세계에서 몰입하여 뛰어난 결과물을 만들어냅니다. 때로는 몽환적으로 보일 수 있지만, 핵심 순간에는 번개 같은 직감과 실행력을 보여줍니다.'
+                description: '당신은 놀라운 집중력으로 복잡한 문제를 해결하는 개발 전문가입니다. 주변의 소음에 흔들리지 않고 자신만의 세계에서 몰입하여 뛰어난 결과물을 만들어냅니다. 때로는 몽환적으로 보일 수 있지만, 핵심 순간에는 번개 같은 직감과 실행력을 보여줍니다.',
+                compatible: ['giyu', 'gyomei'],
+                incompatible: ['tengen', 'sanemi']
             },
             mitsuri: {
                 name: '칸로지 미츠리',
                 title: '소통의 전문가',
                 subtitle: '인사팀 매니저',
                 emoji: '💕',
-                description: '당신은 밝고 따뜻한 성격으로 사람들과의 소통을 즐기는 인사 전문가입니다. 팀원들의 고민을 진심으로 들어주고, 모든 사람이 편안하게 일할 수 있는 환경을 만듭니다. 강한 공감 능력과 포용력으로 조직의 화합을 이끌어내는 특별한 재능을 가지고 있습니다.'
+                description: '당신은 밝고 따뜻한 성격으로 사람들과의 소통을 즐기는 인사 전문가입니다. 팀원들의 고민을 진심으로 들어주고, 모든 사람이 편안하게 일할 수 있는 환경을 만듭니다. 강한 공감 능력과 포용력으로 조직의 화합을 이끌어내는 특별한 재능을 가지고 있습니다.',
+                compatible: ['tanjiro', 'rengoku'],
+                incompatible: ['giyu', 'akaza']
             },
             sanemi: {
                 name: '시나즈가와 사네미',
                 title: '강인한 실행자',
                 subtitle: '현장관리팀장',
                 emoji: '💨',
-                description: '당신은 거친 외모 뒤에 강한 책임감을 가진 현장 관리의 전문가입니다. 타협하지 않는 원칙주의자로서 품질과 안전에 대한 기준이 매우 높으며, 어려운 상황에서도 팀을 보호하기 위해 앞장섭니다. 직설적인 소통 방식이지만 진심어린 배려가 담겨있습니다.'
+                description: '당신은 거친 외모 뒤에 강한 책임감을 가진 현장 관리의 전문가입니다. 타협하지 않는 원칙주의자로서 품질과 안전에 대한 기준이 매우 높으며, 어려운 상황에서도 팀을 보호하기 위해 앞장섭니다. 직설적인 소통 방식이지만 진심어린 배려가 담겨있습니다.',
+                compatible: ['gyomei', 'inosuke'],
+                incompatible: ['tanjiro', 'zenitsu']
             },
             gyomei: {
                 name: '히메지마 교메이',
                 title: '신중한 관리자',
                 subtitle: '운영총괄임원',
                 emoji: '🏔️',
-                description: '당신은 깊은 경험과 통찰력을 바탕으로 조직 전체를 관리하는 운영 총괄 전문가입니다. 신중하고 사려깊은 판단으로 큰 그림을 그리며, 모든 결정에 책임을 집니다. 팀원들에게는 든든한 버팀목이 되어주며, 위기 상황에서도 흔들리지 않는 안정감을 제공합니다.'
+                description: '당신은 깊은 경험과 통찰력을 바탕으로 조직 전체를 관리하는 운영 총괄 전문가입니다. 신중하고 사려깊은 판단으로 큰 그림을 그리며, 모든 결정에 책임을 집니다. 팀원들에게는 든든한 버팀목이 되어주며, 위기 상황에서도 흔들리지 않는 안정감을 제공합니다.',
+                compatible: ['muichiro', 'tanjiro'],
+                incompatible: ['muzan', 'tengen']
             },
             muzan: {
                 name: '키부츠지 무잔',
                 title: '절대적 권력자',
                 subtitle: 'CEO',
                 emoji: '👑',
-                description: '당신은 카리스마와 강력한 리더십으로 조직을 이끄는 최고경영자입니다. 높은 기준과 완벽을 추구하며, 결과에 대한 책임을 철저히 집니다. 때로는 냉혹해 보일 수 있지만, 조직의 성공을 위해서는 어떤 어려운 결정도 내릴 수 있는 강한 의지력을 가지고 있습니다.'
+                description: '당신은 카리스마와 강력한 리더십으로 조직을 이끄는 최고경영자입니다. 높은 기준과 완벽을 추구하며, 결과에 대한 책임을 철저히 집니다. 때로는 냉혹해 보일 수 있지만, 조직의 성공을 위해서는 어떤 어려운 결정도 내릴 수 있는 강한 의지력을 가지고 있습니다.',
+                compatible: ['akaza', 'iguro'],
+                incompatible: ['tanjiro', 'rengoku']
             },
             akaza: {
                 name: '아카자',
                 title: '성과주의자',
                 subtitle: '영업총괄',
                 emoji: '👊',
-                description: '당신은 끝없는 성장 욕구와 경쟁심으로 무장한 영업 총괄 전문가입니다. 목표 달성에 대한 집착이 강하며, 자신과 팀의 한계를 뛰어넘기 위해 끊임없이 노력합니다. 강한 실적 압박 속에서도 더 높은 성과를 향해 전진하는 불굴의 정신력을 가지고 있습니다.'
+                description: '당신은 끝없는 성장 욕구와 경쟁심으로 무장한 영업 총괄 전문가입니다. 목표 달성에 대한 집착이 강하며, 자신과 팀의 한계를 뛰어넘기 위해 끊임없이 노력합니다. 강한 실적 압박 속에서도 더 높은 성과를 향해 전진하는 불굴의 정신력을 가지고 있습니다.',
+                compatible: ['muzan', 'sanemi'],
+                incompatible: ['mitsuri', 'rengoku']
             },
             iguro: {
                 name: '이구로 오바나이',
                 title: '엄격한 관리자',
                 subtitle: '컴플라이언스 팀장',
                 emoji: '🐍',
-                description: '당신은 높은 기준과 철저한 원칙으로 무장한 컴플라이언스 전문가입니다. 세심한 관찰력으로 작은 허점도 놓치지 않으며, 규정과 절차를 완벽하게 준수합니다. 때로는 까다롭게 느껴질 수 있지만, 조직의 리스크를 사전에 차단하고 품질을 보장하는 핵심적인 역할을 담당합니다. 신뢰할 수 있는 사람에게만 마음을 여는 신중하고 완고한 전문가입니다.'
+                description: '당신은 높은 기준과 철저한 원칙으로 무장한 컴플라이언스 전문가입니다. 세심한 관찰력으로 작은 허점도 놓치지 않으며, 규정과 절차를 완벽하게 준수합니다. 때로는 까다롭게 느껴질 수 있지만, 조직의 리스크를 사전에 차단하고 품질을 보장하는 핵심적인 역할을 담당합니다. 신뢰할 수 있는 사람에게만 마음을 여는 신중하고 완고한 전문가입니다.',
+                compatible: ['muzan', 'shinobu'],
+                incompatible: ['inosuke', 'tengen']
             }
         };
 
-        // 궁합 데이터 (예시)
-        const compatibility = {
-            tanjiro: { good: 'mitsuri', bad: 'muzan' },
-            nezuko: { good: 'tanjiro', bad: 'iguro' },
-            zenitsu: { good: 'nezuko', bad: 'sanemi' },
-            inosuke: { good: 'tanjiro', bad: 'shinobu' },
-            giyu: { good: 'tanjiro', bad: 'tengen' },
-            rengoku: { good: 'tanjiro', bad: 'muzan' },
-            tengen: { good: 'mitsuri', bad: 'giyu' },
-            shinobu: { good: 'giyu', bad: 'inosuke' },
-            muichiro: { good: 'tanjiro', bad: 'akaza' },
-            mitsuri: { good: 'tanjiro', bad: 'iguro' },
-            sanemi: { good: 'gyomei', bad: 'zenitsu' },
-            gyomei: { good: 'tanjiro', bad: 'muzan' },
-            muzan: { good: 'akaza', bad: 'tanjiro' },
-            akaza: { good: 'muzan', bad: 'rengoku' },
-            iguro: { good: 'mitsuri', bad: 'nezuko' }
-        };
-
-        // 질문 데이터
-        const questions = [
-            {
-                text: "새로운 프로젝트가 시작되었습니다. 당신의 첫 번째 행동은?",
-                answers: [
-                    { text: "팀원들과 회의를 열어 역할을 분담한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "혼자서 계획을 세우고 체계적으로 접근한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "일단 시작해보며 경험으로 배운다", scores: { inosuke: 3, rengoku: 2 } },
-                    { text: "관련 자료를 꼼꼼히 분석한다", scores: { zenitsu: 3, muichiro: 2 } }
-                ]
-            },
-            {
-                text: "동료가 실수로 중요한 업무를 놓쳤습니다. 어떻게 하시겠습니까?",
-                answers: [
-                    { text: "함께 문제를 해결하고 재발방지 방안을 논의한다", scores: { tanjiro: 3, gyomei: 2 } },
-                    { text: "조용히 대신 처리해준다", scores: { nezuko: 3, mitsuri: 2 } },
-                    { text: "명확하게 지적하고 개선을 요구한다", scores: { sanemi: 3, iguro: 2 } },
-                    { text: "시스템의 문제점을 분석해서 개선안을 제시한다", scores: { shinobu: 3, giyu: 2 } }
-                ]
-            },
-            {
-                text: "업무 중 예상치 못한 위기 상황이 발생했습니다.",
-                answers: [
-                    { text: "즉시 상황을 파악하고 신속하게 대응한다", scores: { rengoku: 3, inosuke: 2 } },
-                    { text: "차분히 원인을 분석하고 단계적으로 해결한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "팀원들과 상의하여 최선의 방법을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "완벽한 해결책을 찾을 때까지 신중하게 검토한다", scores: { zenitsu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "팀 내에서 의견 충돌이 일어났습니다.",
-                answers: [
-                    { text: "중재자 역할을 하며 합의점을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "객관적인 데이터로 최선의 방안을 제시한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "강하게 자신의 의견을 주장한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "조용히 지켜보다가 적절한 시점에 의견을 낸다", scores: { nezuko: 2, muichiro: 2 } }
-                ]
-            },
-            {
-                text: "새로운 기술이나 트렌드에 대한 당신의 접근법은?",
-                answers: [
-                    { text: "화려하고 창의적인 방식으로 활용한다", scores: { tengen: 3, rengoku: 2 } },
-                    { text: "신중하게 검증한 후 도입한다", scores: { gyomei: 3, zenitsu: 2 } },
-                    { text: "빠르게 습득해서 경쟁 우위를 확보한다", scores: { akaza: 3, inosuke: 2 } },
-                    { text: "깊이 있게 분석하고 최적화한다", scores: { muichiro: 3, shinobu: 2 } }
-                ]
-            },
-            {
-                text: "스트레스를 받는 상황에서의 당신의 반응은?",
-                answers: [
-                    { text: "더욱 집중해서 완벽하게 해결하려 한다", scores: { zenitsu: 3, iguro: 2 } },
-                    { text: "팀원들과 함께 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "정면돌파로 해결한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "침착하게 상황을 정리한다", scores: { giyu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "회사에서 가장 중요하게 생각하는 가치는?",
-                answers: [
-                    { text: "팀워크와 상호 존중", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "효율성과 합리성", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "성과와 결과", scores: { akaza: 3, muzan: 2 } },
-                    { text: "안정성과 신뢰성", scores: { nezuko: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "후배나 신입사원에게 조언할 때 당신의 스타일은?",
-                answers: [
-                    { text: "열정적으로 격려하며 성장을 돕는다", scores: { rengoku: 3, mitsuri: 2 } },
-                    { text: "체계적으로 필요한 스킬을 알려준다", scores: { gyomei: 3, shinobu: 2 } },
-                    { text: "실전 경험을 통해 배우도록 한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "필요할 때 조용히 도움을 준다", scores: { nezuko: 3, giyu: 2 } }
-                ]
-            },
-            {
-                text: "중요한 결정을 내려야 할 때 당신은?",
-                answers: [
-                    { text: "팀원들의 의견을 종합해서 결정한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "데이터와 논리를 바탕으로 결정한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "직감과 경험을 믿고 빠르게 결정한다", scores: { rengoku: 3, inosuke: 2 } },
-                    { text: "모든 가능성을 검토한 후 신중하게 결정한다", scores: { zenitsu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "업무에서 가장 스트레스를 받는 상황은?",
-                answers: [
-                    { text: "팀워크가 잘 안 될 때", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "비효율적인 프로세스를 봐야 할 때", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "목표를 달성하지 못할 때", scores: { akaza: 3, rengoku: 2 } },
-                    { text: "실수나 오류가 발생했을 때", scores: { zenitsu: 3, iguro: 2 } }
-                ]
-            },
-            {
-                text: "성공적인 프로젝트 완료 후 당신의 행동은?",
-                answers: [
-                    { text: "팀원들과 함께 성과를 축하한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "다음 프로젝트 준비를 시작한다", scores: { akaza: 3, muzan: 2 } },
-                    { text: "프로세스를 분석해서 개선점을 찾는다", scores: { shinobu: 3, gyomei: 2 } },
-                    { text: "조용히 만족하며 다음 일에 집중한다", scores: { giyu: 3, nezuko: 2 } }
-                ]
-            },
-            {
-                text: "이상적인 근무 환경은?",
-                answers: [
-                    { text: "소통이 활발하고 협업이 잘 되는 환경", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "집중할 수 있는 조용하고 체계적인 환경", scores: { giyu: 3, muichiro: 2 } },
-                    { text: "도전적이고 경쟁이 있는 역동적인 환경", scores: { inosuke: 3, akaza: 2 } },
-                    { text: "안정적이고 예측 가능한 환경", scores: { nezuko: 3, gyomei: 2 } }
-                ]
-            }
-        ];
-
-        // 게임 상태
         let currentQuestion = 0;
+        let answers = [];
         let scores = {};
-        let selectedAnswer = null;
 
-        // 점수 초기화
-        Object.keys(characters).forEach(char => {
+        // 캐릭터별 점수 초기화
+        for (let char in characters) {
             scores[char] = 0;
-        });
-
-        // 페이지 전환 함수
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
         }
 
-        // 테스트 시작
         function startTest() {
-            currentQuestion = 0;
-            scores = {};
-            Object.keys(characters).forEach(char => {
-                scores[char] = 0;
-            });
-            selectedAnswer = null;
-            showPage('questionPage');
-            displayQuestion();
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('questionScreen').classList.remove('hidden');
+            showQuestion();
         }
 
-        // 질문 표시
-        function displayQuestion() {
-            const question = questions[currentQuestion];
-            document.getElementById('questionNumber').textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
-            document.getElementById('questionText').textContent = question.text;
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Q${currentQuestion + 1}/12`;
+            document.getElementById('questionText').textContent = q.question;
             
-            const answersContainer = document.getElementById('answers');
-            answersContainer.innerHTML = '';
+            const progressPercent = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progressPercent + '%';
             
-            question.answers.forEach((answer, index) => {
-                const answerBtn = document.createElement('button');
-                answerBtn.className = 'answer-btn';
-                answerBtn.textContent = answer.text;
-                answerBtn.onclick = () => selectAnswer(index);
-                answersContainer.appendChild(answerBtn);
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+            
+            q.answers.forEach((answer, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer.text;
+                btn.onclick = () => selectAnswer(index);
+                if (answers[currentQuestion] === index) {
+                    btn.style.background = '#667eea';
+                    btn.style.color = 'white';
+                }
+                container.appendChild(btn);
             });
-
-            // 프로그레스 바 업데이트
-            const progress = ((currentQuestion) / questions.length) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-
+            
             // 네비게이션 버튼 상태 업데이트
             document.getElementById('prevBtn').disabled = currentQuestion === 0;
-            document.getElementById('nextBtn').disabled = true;
-            selectedAnswer = null;
+            document.getElementById('nextBtn').disabled = answers[currentQuestion] === undefined;
+            
+            if (currentQuestion === questions.length - 1) {
+                document.getElementById('nextBtn').textContent = '결과 보기';
+            } else {
+                document.getElementById('nextBtn').textContent = '다음';
+            }
         }
 
-        // 답변 선택
-        function selectAnswer(answerIndex) {
-            // 기존 선택 해제
-            document.querySelectorAll('.answer-btn').forEach(btn => {
-                btn.classList.remove('selected');
+        function selectAnswer(index) {
+            answers[currentQuestion] = index;
+            
+            // 버튼 스타일 업데이트
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.style.background = '#667eea';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.background = 'white';
+                    btn.style.color = '#333';
+                }
             });
             
-            // 새 선택 적용
-            document.querySelectorAll('.answer-btn')[answerIndex].classList.add('selected');
-            selectedAnswer = answerIndex;
             document.getElementById('nextBtn').disabled = false;
         }
 
-        // 다음 질문
-        function nextQuestion() {
-            if (selectedAnswer === null) return;
-
-            // 점수 추가
-            const question = questions[currentQuestion];
-            const answer = question.answers[selectedAnswer];
-            Object.keys(answer.scores).forEach(char => {
-                scores[char] += answer.scores[char];
-            });
-
-            currentQuestion++;
-            
-            if (currentQuestion >= questions.length) {
-                showResult();
-            } else {
-                displayQuestion();
-            }
-        }
-
-        // 이전 질문
-        function previousQuestion() {
+        function prevQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
-                displayQuestion();
+                showQuestion();
             }
         }
 
-        // 결과 표시
-        function showResult() {
-            // 가장 높은 점수의 캐릭터 찾기
-            let maxScore = 0;
-            let resultCharacter = 'tanjiro';
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) return;
             
-            Object.keys(scores).forEach(char => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+
+        function calculateResult() {
+            // 점수 계산
+            answers.forEach((answerIndex, questionIndex) => {
+                const question = questions[questionIndex];
+                const answer = question.answers[answerIndex];
+                for (let char in answer.points) {
+                    scores[char] += answer.points[char];
+                }
+            });
+            
+            // 최고 점수 캐릭터 찾기
+            let maxScore = 0;
+            let resultCharacter = '';
+            for (let char in scores) {
                 if (scores[char] > maxScore) {
                     maxScore = scores[char];
                     resultCharacter = char;
                 }
-            });
-
-            const character = characters[resultCharacter];
-            const compat = compatibility[resultCharacter];
+            }
             
-            document.getElementById('characterName').innerHTML = `${character.emoji} ${character.name}`;
+            showResult(resultCharacter);
+        }
+
+        function showResult(characterKey) {
+            const character = characters[characterKey];
+            
+            document.getElementById('questionScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+            
+            document.getElementById('characterName').textContent = character.name;
             document.getElementById('characterTitle').textContent = character.title;
             document.getElementById('characterSubtitle').textContent = character.subtitle;
+            document.getElementById('characterEmoji').textContent = character.emoji;
             document.getElementById('characterDescription').textContent = character.description;
             
-            // 캐릭터 이미지 설정
-            const characterImg = document.getElementById('characterImage');
-            const imagePath = `images/results/${resultCharacter}`;
-            const extensions = ['jpg', 'jpeg', 'png'];
+            // 결과 이미지 설정
+            const resultImg = document.getElementById('resultImage');
+            const imagePaths = [
+                `images/results/${characterKey}.jpg`,
+                `images/results/${characterKey}.jpeg`,
+                `images/results/${characterKey}.png`
+            ];
             
-            function tryLoadImage(index = 0) {
-                if (index >= extensions.length) {
-                    characterImg.src = getPlaceholderImage(400, 400, character.name);
-                    return;
-                }
-                
-                const testImg = new Image();
-                testImg.onload = () => characterImg.src = `${imagePath}.${extensions[index]}`;
-                testImg.onerror = () => tryLoadImage(index + 1);
-                testImg.src = `${imagePath}.${extensions[index]}`;
-            }
+            tryLoadImage(resultImg, imagePaths, 0, character.emoji);
             
-            tryLoadImage();
-
             // 궁합 이미지 설정
-            const goodMatchImg = document.getElementById('goodMatchImage');
-            const badMatchImg = document.getElementById('badMatchImage');
+            const goodContainer = document.getElementById('goodCompatibility');
+            const badContainer = document.getElementById('badCompatibility');
             
-            const goodMatchPath = `images/compatibility/${compat.good}`;
-            const badMatchPath = `images/compatibility/${compat.bad}`;
+            goodContainer.innerHTML = '';
+            badContainer.innerHTML = '';
             
-            function tryLoadCompatImage(imgElement, path, name, index = 0) {
-                if (index >= extensions.length) {
-                    imgElement.src = getPlaceholderImage(150, 150, name);
-                    return;
-                }
+            character.compatible.forEach(compat => {
+                const img = document.createElement('img');
+                img.className = 'compat-img';
+                img.alt = characters[compat].name;
+                img.title = characters[compat].name + ' - ' + characters[compat].title;
                 
-                const testImg = new Image();
-                testImg.onload = () => imgElement.src = `${path}.${extensions[index]}`;
-                testImg.onerror = () => tryLoadCompatImage(imgElement, path, name, index + 1);
-                testImg.src = `${path}.${extensions[index]}`;
+                const compatPaths = [
+                    `images/compatibility/${compat}.jpg`,
+                    `images/compatibility/${compat}.jpeg`,
+                    `images/compatibility/${compat}.png`
+                ];
+                
+                tryLoadImage(img, compatPaths, 0, characters[compat].emoji);
+                goodContainer.appendChild(img);
+            });
+            
+            character.incompatible.forEach(incompat => {
+                const img = document.createElement('img');
+                img.className = 'compat-img';
+                img.alt = characters[incompat].name;
+                img.title = characters[incompat].name + ' - ' + characters[incompat].title;
+                
+                const incompatPaths = [
+                    `images/compatibility/${incompat}.jpg`,
+                    `images/compatibility/${incompat}.jpeg`,
+                    `images/compatibility/${incompat}.png`
+                ];
+                
+                tryLoadImage(img, incompatPaths, 0, characters[incompat].emoji);
+                badContainer.appendChild(img);
+            });
+            
+            // URL 파라미터 업데이트 (결과 공유용)
+            const url = new URL(window.location);
+            url.searchParams.set('result', characterKey);
+            window.history.pushState({}, '', url);
+        }
+
+        function tryLoadImage(img, paths, index, emoji) {
+            if (index >= paths.length) {
+                // 모든 경로 실패 시 이모지 표시
+                img.style.display = 'none';
+                const emojiDiv = document.createElement('div');
+                emojiDiv.style.cssText = 'width:150px;height:150px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:3em;box-shadow:0 5px 15px rgba(0,0,0,0.2);';
+                emojiDiv.textContent = emoji;
+                img.parentNode.replaceChild(emojiDiv, img);
+                return;
             }
             
-            tryLoadCompatImage(goodMatchImg, goodMatchPath, characters[compat.good].name);
-            tryLoadCompatImage(badMatchImg, badMatchPath, characters[compat.bad].name);
+            img.src = paths[index];
+            img.onerror = () => tryLoadImage(img, paths, index + 1, emoji);
+        }
+
+        function retryTest() {
+            currentQuestion = 0;
+            answers = [];
+            for (let char in characters) {
+                scores[char] = 0;
+            }
             
-            document.getElementById('goodMatchName').textContent = characters[compat.good].name;
-            document.getElementById('badMatchName').textContent = characters[compat.bad].name;
-
-            // URL 업데이트 (결과 공유용)
-            const newUrl = `${window.location.origin}${window.location.pathname}?result=${resultCharacter}`;
-            window.history.replaceState({}, '', newUrl);
+            const url = new URL(window.location);
+            url.searchParams.delete('result');
+            window.history.pushState({}, '', url);
             
-            showPage('resultPage');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('startScreen').classList.remove('hidden');
         }
 
-        // 플레이스홀더 이미지 생성
-        function getPlaceholderImage(width, height, text) {
-            return `data:image/svg+xml;base64,${btoa(`<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="16" fill="#999" text-anchor="middle" dy=".3em">${text}</text></svg>`)}`;
-        }
-
-        // 테스트 재시작
-        function restartTest() {
-            window.history.replaceState({}, '', window.location.pathname);
-            showPage('startPage');
-        }
-
-        // 결과 공유
         function shareResult() {
-            const currentUrl = window.location.href;
-            navigator.clipboard.writeText(currentUrl).then(() => {
-                alert('결과 페이지 링크가 복사되었습니다! 친구들과 공유해보세요 🎉');
-            }).catch(() => {
-                // 클립보드 API 실패 시 대체 방법
-                const textArea = document.createElement('textarea');
-                textArea.value = currentUrl;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('결과 페이지 링크가 복사되었습니다! 친구들과 공유해보세요 🎉');
-            });
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '귀멸의 칼날 직장인 버전 테스트',
+                    text: '나의 직장인 유형은? 지금 테스트해보세요!',
+                    url: url
+                }).catch(err => {
+                    copyToClipboard(url);
+                });
+            } else {
+                copyToClipboard(url);
+            }
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            alert('링크가 복사되었습니다!');
         }
 
         // 페이지 로드 시 URL 파라미터 확인
@@ -819,60 +805,8 @@
             const resultParam = urlParams.get('result');
             
             if (resultParam && characters[resultParam]) {
-                // 직접 결과 페이지로 이동
-                const character = characters[resultParam];
-                const compat = compatibility[resultParam];
-                
-                document.getElementById('characterName').innerHTML = `${character.emoji} ${character.name}`;
-                document.getElementById('characterTitle').textContent = character.title;
-                document.getElementById('characterSubtitle').textContent = character.subtitle;
-                document.getElementById('characterDescription').textContent = character.description;
-                
-                // 이미지 설정
-                const characterImg = document.getElementById('characterImage');
-                const imagePath = `images/results/${resultParam}`;
-                const extensions = ['jpg', 'jpeg', 'png'];
-                
-                function tryLoadImage(index = 0) {
-                    if (index >= extensions.length) {
-                        characterImg.src = getPlaceholderImage(400, 400, character.name);
-                        return;
-                    }
-                    
-                    const testImg = new Image();
-                    testImg.onload = () => characterImg.src = `${imagePath}.${extensions[index]}`;
-                    testImg.onerror = () => tryLoadImage(index + 1);
-                    testImg.src = `${imagePath}.${extensions[index]}`;
-                }
-                
-                tryLoadImage();
-
-                // 궁합 이미지 설정
-                const goodMatchImg = document.getElementById('goodMatchImage');
-                const badMatchImg = document.getElementById('badMatchImage');
-                
-                const goodMatchPath = `images/compatibility/${compat.good}`;
-                const badMatchPath = `images/compatibility/${compat.bad}`;
-                
-                function tryLoadCompatImage(imgElement, path, name, index = 0) {
-                    if (index >= extensions.length) {
-                        imgElement.src = getPlaceholderImage(150, 150, name);
-                        return;
-                    }
-                    
-                    const testImg = new Image();
-                    testImg.onload = () => imgElement.src = `${path}.${extensions[index]}`;
-                    testImg.onerror = () => tryLoadCompatImage(imgElement, path, name, index + 1);
-                    testImg.src = `${path}.${extensions[index]}`;
-                }
-                
-                tryLoadCompatImage(goodMatchImg, goodMatchPath, characters[compat.good].name);
-                tryLoadCompatImage(badMatchImg, badMatchPath, characters[compat.bad].name);
-                
-                document.getElementById('goodMatchName').textContent = characters[compat.good].name;
-                document.getElementById('badMatchName').textContent = characters[compat.bad].name;
-                
-                showPage('resultPage');
+                document.getElementById('startScreen').classList.add('hidden');
+                showResult(resultParam);
             }
         });
     </script>
