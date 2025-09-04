@@ -196,6 +196,16 @@
             background-clip: text;
         }
 
+        .character-title {
+            font-size: 2rem;
+            color: #333;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
         .character-description {
             font-size: 1.2rem;
             color: #555;
@@ -251,7 +261,7 @@
     <div class="container">
         <!-- 시작 화면 -->
         <div class="start-screen" id="startScreen">
-            <h1>🗾 귀멸의칼날 직장인 버전 🗾</h1>
+            <h1> 귀멸의칼날 직장인 버전 </h1>
             <p>당신은 어떤 귀멸의칼날 캐릭터와 닮았을까요?<br>직장인의 관점에서 알아보는 성격 테스트!</p>
             <div class="main-image">
                 시작 화면 이미지<br>800x800
@@ -275,6 +285,7 @@
         <!-- 결과 화면 -->
         <div class="result-screen" id="resultScreen">
             <h2 class="character-name" id="characterName"></h2>
+            <div class="character-title" id="CharacterTitle"></div>
             <div class="result-image" id="resultImage"></div>
             <div class="character-description" id="characterDescription"></div>
             
