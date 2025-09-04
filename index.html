@@ -503,114 +503,166 @@
             iguro: { good: 'mitsuri', bad: 'tengen' }
         };
 
-        // 질문 데이터
-        const questions = [
-            {
-                text: "새로운 프로젝트가 시작되었습니다. 당신의 첫 번째 행동은?",
-                answers: [
-                    { text: "팀원들과 회의를 열어 역할을 분담한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "혼자서 계획을 세우고 체계적으로 접근한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "일단 시작해보며 경험으로 배운다", scores: { inosuke: 3, rengoku: 2 } },
-                    { text: "관련 자료를 꼼꼼히 분석한다", scores: { zenitsu: 3, muichiro: 2 } }
-                ]
-            },
-            {
-                text: "동료가 실수로 중요한 업무를 놓쳤습니다. 어떻게 하시겠습니까?",
-                answers: [
-                    { text: "함께 문제를 해결하고 재발방지 방안을 논의한다", scores: { tanjiro: 3, gyomei: 2 } },
-                    { text: "조용히 대신 처리해준다", scores: { nezuko: 3, mitsuri: 2 } },
-                    { text: "명확하게 지적하고 개선을 요구한다", scores: { sanemi: 3, iguro: 2 } },
-                    { text: "시스템의 문제점을 분석해서 개선안을 제시한다", scores: { shinobu: 3, giyu: 2 } }
-                ]
-            },
-            {
-                text: "업무 중 예상치 못한 위기 상황이 발생했습니다.",
-                answers: [
-                    { text: "즉시 상황을 파악하고 신속하게 대응한다", scores: { rengoku: 3, inosuke: 2 } },
-                    { text: "차분히 원인을 분석하고 단계적으로 해결한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "팀원들과 상의하여 최선의 방법을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "완벽한 해결책을 찾을 때까지 신중하게 검토한다", scores: { zenitsu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "팀 내에서 의견 충돌이 일어났습니다.",
-                answers: [
-                    { text: "중재자 역할을 하며 합의점을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "객관적인 데이터로 최선의 방안을 제시한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "강하게 자신의 의견을 주장한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "조용히 지켜보다가 적절한 시점에 의견을 낸다", scores: { nezuko: 2, muichiro: 2 } }
-                ]
-            },
-            {
-                text: "새로운 기술이나 트렌드에 대한 당신의 접근법은?",
-                answers: [
-                    { text: "화려하고 창의적인 방식으로 활용한다", scores: { tengen: 3, rengoku: 2 } },
-                    { text: "신중하게 검증한 후 도입한다", scores: { gyomei: 3, zenitsu: 2 } },
-                    { text: "빠르게 습득해서 경쟁 우위를 확보한다", scores: { akaza: 3, inosuke: 2 } },
-                    { text: "깊이 있게 분석하고 최적화한다", scores: { muichiro: 3, shinobu: 2 } }
-                ]
-            },
-            {
-                text: "스트레스를 받는 상황에서의 당신의 반응은?",
-                answers: [
-                    { text: "더욱 집중해서 완벽하게 해결하려 한다", scores: { zenitsu: 3, iguro: 2 } },
-                    { text: "팀원들과 함께 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "정면돌파로 해결한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "침착하게 상황을 정리한다", scores: { giyu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "회사에서 가장 중요하게 생각하는 가치는?",
-                answers: [
-                    { text: "팀워크와 상호 존중", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "효율성과 합리성", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "성과와 결과", scores: { akaza: 3, muzan: 2 } },
-                    { text: "안정성과 신뢰성", scores: { nezuko: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "후배나 신입사원에게 조언할 때 당신의 스타일은?",
-                answers: [
-                    { text: "열정적으로 격려하며 성장을 돕는다", scores: { rengoku: 3, mitsuri: 2 } },
-                    { text: "체계적으로 필요한 스킬을 알려준다", scores: { gyomei: 3, shinobu: 2 } },
-                    { text: "실전 경험을 통해 배우도록 한다", scores: { inosuke: 3, sanemi: 2 } },
-                    { text: "필요할 때 조용히 도움을 준다", scores: { nezuko: 3, giyu: 2 } }
-                ]
-            },
-            {
-                text: "중요한 결정을 내려야 할 때 당신은?",
-                answers: [
-                    { text: "팀원들의 의견을 종합해서 결정한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "데이터와 논리를 바탕으로 결정한다", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "직감과 경험을 믿고 빠르게 결정한다", scores: { rengoku: 3, inosuke: 2 } },
-                    { text: "모든 가능성을 검토한 후 신중하게 결정한다", scores: { zenitsu: 3, gyomei: 2 } }
-                ]
-            },
-            {
-                text: "업무에서 가장 스트레스를 받는 상황은?",
-                answers: [
-                    { text: "팀워크가 잘 안 될 때", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "비효율적인 프로세스를 봐야 할 때", scores: { giyu: 3, shinobu: 2 } },
-                    { text: "목표를 달성하지 못할 때", scores: { akaza: 3, rengoku: 2 } },
-                    { text: "실수나 오류가 발생했을 때", scores: { zenitsu: 3, iguro: 2 } }
-                ]
-            },
-            {
-                text: "성공적인 프로젝트 완료 후 당신의 행동은?",
-                answers: [
-                    { text: "팀원들과 함께 성과를 축하한다", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "다음 프로젝트 준비를 시작한다", scores: { akaza: 3, muzan: 2 } },
-                    { text: "프로세스를 분석해서 개선점을 찾는다", scores: { shinobu: 3, gyomei: 2 } },
-                    { text: "조용히 만족하며 다음 일에 집중한다", scores: { giyu: 3, nezuko: 2 } }
-                ]
-            },
-            {
-                text: "이상적인 근무 환경은?",
-                answers: [
-                    { text: "소통이 활발하고 협업이 잘 되는 환경", scores: { tanjiro: 3, mitsuri: 2 } },
-                    { text: "집중할 수 있는 조용하고 체계적인 환경", scores: { giyu: 3, muichiro: 2 } },
-                    { text: "도전적이고 경쟁이 있는 역동적인 환경", scores: { inosuke: 3, akaza: 2 } },
-                    { text: "안정적이고 예측 가능한 환경", scores: { nezuko: 3, gyomei: 2 } }
+     // ==============================
+// 12개 질문 + 점수 매핑 (15캐릭터 커버)
+// ==============================
+const questions = [
+  // 1
+  {
+    text: "새 프로젝트 킥오프! 당신의 첫 행동은?",
+    answers: [
+      { text: "팀원 역할과 일정부터 정리한다", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "목표를 수치화하고 KPI를 박는다", scores: { akaza: 3, muzan: 2 } },
+      { text: "자료를 모아 프레임워크로 구조화", scores: { giyu: 3, shinobu: 2 } },
+      { text: "빠르게 프로토타입부터 찍어본다", scores: { tengen: 3, inosuke: 2 } },
+    ],
+  },
+  // 2
+  {
+    text: "동료가 큰 실수를 했다. 당신은?",
+    answers: [
+      { text: "함께 해결하고 재발 방지 SOP를 만든다", scores: { tanjiro: 3, gyomei: 2 } },
+      { text: "조용히 대신 처리하고 부담을 덜어준다", scores: { nezuko: 3, mitsuri: 2 } },
+      { text: "원칙대로 지적하고 개선을 강하게 요구", scores: { sanemi: 3, iguro: 2 } },
+      { text: "원인 분석 리포트와 대안을 제시한다", scores: { shinobu: 3, giyu: 2 } },
+    ],
+  },
+  // 3
+  {
+    text: "예상 못한 위기가 터졌다!",
+    answers: [
+      { text: "현장에 들어가 즉시 컨트롤타워 가동", scores: { rengoku: 3, sanemi: 2 } },
+      { text: "차분히 원인을 분해하고 단계적 대응", scores: { giyu: 3, gyomei: 2 } },
+      { text: "팀을 모아 아이디어 스톰으로 돌파", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "혼자 몰입해 핵심 버그를 박살낸다", scores: { muichiro: 3, zenitsu: 2 } },
+    ],
+  },
+  // 4
+  {
+    text: "회의가 삐걱댄다. 당신의 한마디는?",
+    answers: [
+      { text: "“공통분모부터 잡고 다시 정리하자”", scores: { tanjiro: 3, gyomei: 2 } },
+      { text: "“데이터로 10분 안에 결론 내죠”", scores: { giyu: 3, shinobu: 2 } },
+      { text: "“강하게 밀어붙여 돌파합시다”", scores: { inosuke: 3, akaza: 2 } },
+      { text: "“핵심 논점만 남기고 슬림화”", scores: { iguro: 3, muzan: 2 } },
+    ],
+  },
+  // 5
+  {
+    text: "새 트렌드/기술 등장! 당신의 접근법은?",
+    answers: [
+      { text: "화려한 콘셉트로 시장 관심부터 훔친다", scores: { tengen: 3, rengoku: 2 } },
+      { text: "사전 검증·리스크 점검 후 도입", scores: { gyomei: 3, zenitsu: 2 } },
+      { text: "선점이 생명! 가장 먼저 실험·런칭", scores: { akaza: 3, muzan: 2 } },
+      { text: "깊이 분석해 최적화·내재화한다", scores: { muichiro: 3, shinobu: 2 } },
+    ],
+  },
+  // 6
+  {
+    text: "스트레스 최고조! 당신의 대처는?",
+    answers: [
+      { text: "디테일을 더 조여 완성도로 이긴다", scores: { zenitsu: 3, iguro: 2 } },
+      { text: "사람들과 나눠 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "정면 승부! 체력·추진력으로 돌파", scores: { sanemi: 3, inosuke: 2 } },
+      { text: "한 걸음 물러서 차분히 구조 재정비", scores: { giyu: 3, gyomei: 2 } },
+    ],
+  },
+  // 7
+  {
+    text: "당신이 가장 중시하는 가치는?",
+    answers: [
+      { text: "팀워크·신뢰·배려", scores: { tanjiro: 3, nezuko: 2 } },
+      { text: "효율·합리·데이터", scores: { giyu: 3, iguro: 2 } },
+      { text: "성과·속도·임팩트", scores: { akaza: 3, muzan: 2 } },
+      { text: "안정·지속·책임", scores: { gyomei: 3, mitsuri: 2 } },
+    ],
+  },
+  // 8
+  {
+    text: "신입/후배 코칭 스타일은?",
+    answers: [
+      { text: "열정적으로 격려·동기 부여", scores: { rengoku: 3, mitsuri: 2 } },
+      { text: "체계 커리큘럼·루틴 설계", scores: { shinobu: 3, gyomei: 2 } },
+      { text: "현장 투입·실전으로 성장", scores: { inosuke: 3, sanemi: 2 } },
+      { text: "필요할 때 조용히 서포트", scores: { nezuko: 3, giyu: 2 } },
+    ],
+  },
+  // 9
+  {
+    text: "결정의 순간! 당신은?",
+    answers: [
+      { text: "팀 의견 종합해 합의로 결정", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "팩트·수치로 논리 결정", scores: { giyu: 3, iguro: 2 } },
+      { text: "직감·경험으로 스피드 결정", scores: { rengoku: 3, tengen: 2 } },
+      { text: "모든 가능성을 검토 후 신중 결정", scores: { zenitsu: 3, gyomei: 2 } },
+    ],
+  },
+  // 10
+  {
+    text: "가장 견디기 힘든 순간은?",
+    answers: [
+      { text: "협업이 깨지고 소통이 막힐 때", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "비합리·비효율 프로세스를 볼 때", scores: { giyu: 3, shinobu: 2 } },
+      { text: "목표를 못 채우고 성과가 주춤할 때", scores: { akaza: 3, muzan: 2 } },
+      { text: "규정 어기는 리스크를 볼 때", scores: { iguro: 3, gyomei: 2 } },
+    ],
+  },
+  // 11
+  {
+    text: "프로젝트가 성공했다! 당신은?",
+    answers: [
+      { text: "팀과 성과를 크게 축하한다", scores: { rengoku: 3, tengen: 2 } },
+      { text: "바로 다음 큰 목표를 띄운다", scores: { muzan: 3, akaza: 2 } },
+      { text: "프로세스 회고·개선점을 문서화", scores: { shinobu: 3, iguro: 2 } },
+      { text: "조용히 정리하고 다음 준비", scores: { giyu: 3, nezuko: 2 } },
+    ],
+  },
+  // 12
+  {
+    text: "이상적인 업무 환경은?",
+    answers: [
+      { text: "소통 활발·협업 중심 오피스", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "조용·몰입·체계적인 집중존", scores: { muichiro: 3, giyu: 2 } },
+      { text: "도전적이고 역동적인 현장", scores: { inosuke: 3, sanemi: 2 } },
+      { text: "명확한 규정·예측 가능한 운영", scores: { gyomei: 3, iguro: 2 } },
+    ],
+  },
+];
+
+// ------------------------------
+// (선택) 동점 방지용 결과 산정 함수
+//  - answersHistory: 사용자가 고른 answer index 배열 (0~3)
+// ------------------------------
+function pickResult(scores, answersHistory = []) {
+  // 1) 최고점 캐릭터 후보들 추출
+  const maxScore = Math.max(...Object.values(scores));
+  let candidates = Object.keys(scores).filter((k) => scores[k] === maxScore);
+
+  if (candidates.length === 1) return candidates[0];
+
+  // 2) 최근 응답일수록 가중치(0.1) 부여: 해당 답변의 3점/2점 주인에게 미세 가산
+  const weight = 0.1;
+  const temp = { ...scores };
+  const totalQs = Math.min(answersHistory.length, questions.length);
+
+  for (let i = 0; i < totalQs; i++) {
+    const qIdx = i;
+    const aIdx = answersHistory[i];
+    if (aIdx == null) continue;
+    const m = questions[qIdx].answers[aIdx].scores;
+    Object.keys(m).forEach((ch) => {
+      temp[ch] += weight * m[ch] / 3; // 3점 선택 가중치가 더 크게
+    });
+  }
+
+  const newMax = Math.max(...candidates.map((c) => temp[c]));
+  candidates = candidates.filter((c) => temp[c] === newMax);
+
+  // 3) 그래도 여러 명이면, 캐릭터 키 사전순으로 안정 선택
+  candidates.sort();
+  return candidates[0];
+}
+
                 ]
             }
         ];
