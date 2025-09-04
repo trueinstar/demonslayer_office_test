@@ -319,7 +319,7 @@
         <!-- 시작 페이지 -->
         <div id="startPage" class="page active start-page">
             <img src="images/start/main.jpg" alt="귀멸의 칼날 직장인 테스트" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuq3gOuvuOydmCDsvbXrgqAg7YWM7Iqk7Yq4PC90ZXh0Pjwvc3ZnPg=='" />
-            <h1>🗾 귀멸의 칼날 직장인 성격 테스트</h1>
+            <h1>🗡️귀멸의 칼날 직장인 성격 테스트</h1>
             <div class="subtitle">
                 당신은 어떤 직장인 캐릭터와 닮았을까요?<br>
                 12가지 질문을 통해 알아보세요!
@@ -373,7 +373,7 @@
             </div>
 
              <a href="https://www.instagram.com/pocket_true" target="_blank" class="instagram-link">
-                📸 인스타그램 팔로우
+                📸 제작자 인스타그램
             </a>
         </div>
     </div>
@@ -490,21 +490,21 @@
 
         // 궁합 데이터 (예시)
         const compatibility = {
-            tanjiro: { good: 'mitsuri', bad: 'muzan' },
-            nezuko: { good: 'tanjiro', bad: 'iguro' },
-            zenitsu: { good: 'nezuko', bad: 'sanemi' },
-            inosuke: { good: 'tanjiro', bad: 'shinobu' },
-            giyu: { good: 'tanjiro', bad: 'tengen' },
-            rengoku: { good: 'tanjiro', bad: 'muzan' },
-            tengen: { good: 'mitsuri', bad: 'giyu' },
-            shinobu: { good: 'giyu', bad: 'inosuke' },
-            muichiro: { good: 'tanjiro', bad: 'akaza' },
-            mitsuri: { good: 'tanjiro', bad: 'iguro' },
+            tanjiro: { good: 'nezuko', bad: 'muzan' },
+            nezuko: { good: 'tanjiro', bad: 'sanemi' },
+            zenitsu: { good: 'mitsuri', bad: 'sanemi' },
+            inosuke: { good: 'tengen', bad: 'giyu' },
+            giyu: { good: 'shinobu', bad: 'inosuke' },
+            rengoku: { good: 'mitsuri', bad: 'muzan' },
+            tengen: { good: 'inosuke', bad: 'iguro' },
+            shinobu: { good: 'giyu', bad: 'akaza' },
+            muichiro: { good: 'gyomei', bad: 'tengen' },
+            mitsuri: { good: 'rengoku', bad: 'muzan' },
             sanemi: { good: 'gyomei', bad: 'zenitsu' },
-            gyomei: { good: 'tanjiro', bad: 'muzan' },
+            gyomei: { good: 'muichiro', bad: 'muzan' },
             muzan: { good: 'akaza', bad: 'tanjiro' },
-            akaza: { good: 'muzan', bad: 'rengoku' },
-            iguro: { good: 'mitsuri', bad: 'nezuko' }
+            akaza: { good: 'muzan', bad: 'shinobu' },
+            iguro: { good: 'mitsuri', bad: 'tengen' }
         };
 
 // ==============================
@@ -514,71 +514,71 @@
 const questions = [
   // 1
   {
-    text: "새 프로젝트 킥오프! 당신의 첫 행동은?",
+    text: "새 프로젝트가 시작됐다! 제일 먼저 뭘 할까?",
     answers: [
-      { text: "팀원 역할과 일정부터 정리한다", scores: { tanjiro: 3, mitsuri: 2 } },
-      { text: "목표를 수치화하고 KPI를 박는다", scores: { akaza: 3, muzan: 2 } },
+      { text: "팀원 역할부터 나누고 일정을 정한다", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "목표를 수치화하고 KPI를 정한다", scores: { akaza: 3, muzan: 2 } },
       // 변경: giyu 3 → shinobu 3 (기유 비중 감소)
-      { text: "자료를 모아 프레임워크로 구조화", scores: { shinobu: 3, giyu: 2 } },
-      { text: "빠르게 프로토타입부터 찍어본다", scores: { tengen: 3, inosuke: 2 } },
+      { text: "자료를 모아 틀(프레임)부터 만든다", scores: { shinobu: 3, giyu: 2 } },
+      { text: "일단 빨리 만들어보고 시작한다", scores: { tengen: 3, inosuke: 2 } },
     ],
   },
   // 2
   {
     text: "동료가 큰 실수를 했다. 당신은?",
     answers: [
-      { text: "함께 해결하고 재발 방지 SOP를 만든다", scores: { tanjiro: 3, gyomei: 2 } },
+      { text: "같이 방법을 찾아서 문제를 바로 잡는다", scores: { tanjiro: 3, gyomei: 2 } },
       { text: "조용히 대신 처리하고 부담을 덜어준다", scores: { nezuko: 3, mitsuri: 2 } },
-      { text: "원칙대로 지적하고 개선을 강하게 요구", scores: { sanemi: 3, iguro: 2 } },
-      { text: "원인 분석 리포트와 대안을 제시한다", scores: { shinobu: 3, giyu: 2 } },
+      { text: "실수라고 딱 말하고 다시 안하게 한다", scores: { sanemi: 3, iguro: 2 } },
+      { text: "왜 실수했는지 분석해서 해결책을 알려준다", scores: { shinobu: 3, giyu: 2 } },
     ],
   },
   // 3
   {
     text: "예상 못한 위기가 터졌다!",
     answers: [
-      { text: "현장에 들어가 즉시 컨트롤타워 가동", scores: { rengoku: 3, sanemi: 2 } },
+      { text: "현장에 뛰어들어 바로 수습한다", scores: { rengoku: 3, sanemi: 2 } },
       // 변경: giyu 3 → gyomei 3 (운영 안정형 강화)
-      { text: "차분히 원인을 분해하고 단계적 대응", scores: { gyomei: 3, giyu: 2 } },
-      { text: "팀을 모아 아이디어 스톰으로 돌파", scores: { tanjiro: 3, mitsuri: 2 } },
-      { text: "혼자 몰입해 핵심 버그를 박살낸다", scores: { muichiro: 3, zenitsu: 2 } },
+      { text: "원인을 차분히 나눠보고 단계별로 대응한다", scores: { gyomei: 3, giyu: 2 } },
+      { text: "팀원들의 아이디어를 모아 해결한다", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "혼자 몰입해서 핵심 문제를 해결한다", scores: { muichiro: 3, zenitsu: 2 } },
     ],
   },
   // 4
   {
-    text: "회의가 삐걱댄다. 당신의 한마디는?",
+    text: "회의가 길어지고 산으로 간다. 당신은?",
     answers: [
-      { text: "“공통분모부터 잡고 다시 정리하자”", scores: { tanjiro: 3, gyomei: 2 } },
+      { text: "“공통되는 부분부터 정리하죠”", scores: { tanjiro: 3, gyomei: 2 } },
       // 변경: giyu 3 → shinobu 3 (분석·논리형을 시노부로 이동)
-      { text: "“데이터로 10분 안에 결론 내죠”", scores: { shinobu: 3, giyu: 2 } },
-      { text: "“강하게 밀어붙여 돌파합시다”", scores: { inosuke: 3, akaza: 2 } },
-      { text: "“핵심 논점만 남기고 슬림화”", scores: { iguro: 3, muzan: 2 } },
+      { text: "“데이터 보고 빨리 결론 내립시다”", scores: { shinobu: 3, giyu: 2 } },
+      { text: "“내 생각대로 강하게 밀어붙인다”", scores: { inosuke: 3, akaza: 2 } },
+      { text: "“핵심만 남기고 다 빼보자”", scores: { iguro: 3, muzan: 2 } },
     ],
   },
   // 5
   {
     text: "새 트렌드/기술 등장! 당신의 접근법은?",
     answers: [
-      { text: "화려한 콘셉트로 시장 관심부터 훔친다", scores: { tengen: 3, rengoku: 2 } },
-      { text: "사전 검증·리스크 점검 후 도입", scores: { gyomei: 3, zenitsu: 2 } },
-      { text: "선점이 생명! 가장 먼저 실험·런칭", scores: { akaza: 3, muzan: 2 } },
-      { text: "깊이 분석해 최적화·내재화한다", scores: { muichiro: 3, shinobu: 2 } },
+      { text: "화려한 이벤트와 콘셉으로 먼저 눈길을 끈다", scores: { tengen: 3, rengoku: 2 } },
+      { text: "신중하게 검증하고 도입한다", scores: { gyomei: 3, zenitsu: 2 } },
+      { text: "제일 먼저 써보고 시장에 런칭한다", scores: { akaza: 3, muzan: 2 } },
+      { text: "깊게 분석해서 우리 식으로 최적화한다", scores: { muichiro: 3, shinobu: 2 } },
     ],
   },
   // 6
   {
     text: "스트레스 최고조! 당신의 대처는?",
     answers: [
-      { text: "디테일을 더 조여 완성도로 이긴다", scores: { zenitsu: 3, iguro: 2 } },
-      { text: "사람들과 나눠 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
-      { text: "정면 승부! 체력·추진력으로 돌파", scores: { sanemi: 3, inosuke: 2 } },
+      { text: "더 꼼꼼하게 해서 완벽하게 만든다", scores: { zenitsu: 3, iguro: 2 } },
+      { text: "팀원들과 같이 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "정면으로 부딪혀서 돌파한다", scores: { sanemi: 3, inosuke: 2 } },
       // 변경: giyu 3 → muichiro 3 (침착·몰입을 무이치로로 이동)
-      { text: "한 걸음 물러서 차분히 구조 재정비", scores: { muichiro: 3, gyomei: 2 } },
+      { text: "잠시 물러서서 차분히 정리한다", scores: { muichiro: 3, gyomei: 2 } },
     ],
   },
   // 7
   {
-    text: "당신이 가장 중시하는 가치는?",
+    text: "회사에서 제일 중요한 가치는?",
     answers: [
       { text: "팀워크·신뢰·배려", scores: { tanjiro: 3, nezuko: 2 } },
       // 변경: giyu 3 → iguro 3 (규범·합리 = 이구로 강화)
@@ -589,23 +589,23 @@ const questions = [
   },
   // 8
   {
-    text: "신입/후배 코칭 스타일은?",
+    text: "신입사원에게 조언할 때는?",
     answers: [
-      { text: "열정적으로 격려·동기 부여", scores: { rengoku: 3, mitsuri: 2 } },
-      { text: "체계 커리큘럼·루틴 설계", scores: { shinobu: 3, gyomei: 2 } },
-      { text: "현장 투입·실전으로 성장", scores: { inosuke: 3, sanemi: 2 } },
-      { text: "필요할 때 조용히 서포트", scores: { nezuko: 3, giyu: 2 } },
+      { text: "열정적으로 응원한다", scores: { rengoku: 3, mitsuri: 2 } },
+      { text: "체계적으로 하나씩 알려준다", scores: { shinobu: 3, gyomei: 2 } },
+      { text: "실전에 던져서 배우게 한다", scores: { inosuke: 3, sanemi: 2 } },
+      { text: "필요할 때 조용히 도와준다", scores: { nezuko: 3, giyu: 2 } },
     ],
   },
   // 9
   {
-    text: "결정의 순간! 당신은?",
+    text: "중요한 결정을 내려야 한다!",
     answers: [
-      { text: "팀 의견 종합해 합의로 결정", scores: { tanjiro: 3, mitsuri: 2 } },
+      { text: "팀 의견을 종합해 합의로 결정", scores: { tanjiro: 3, mitsuri: 2 } },
       // 변경: giyu 3 → shinobu 3 (논리결정 주득점 시노부)
-      { text: "팩트·수치로 논리 결정", scores: { shinobu: 3, iguro: 2 } },
-      { text: "직감·경험으로 스피드 결정", scores: { rengoku: 3, tengen: 2 } },
-      { text: "모든 가능성을 검토 후 신중 결정", scores: { zenitsu: 3, gyomei: 2 } },
+      { text: "팩트·데이터로 논리 결정", scores: { shinobu: 3, iguro: 2 } },
+      { text: "직감·경험으로 빠르게 결정", scores: { rengoku: 3, tengen: 2 } },
+      { text: "모든 가능성을 검토 후 신중히 결정", scores: { zenitsu: 3, gyomei: 2 } },
     ],
   },
   // 10
@@ -624,10 +624,10 @@ const questions = [
     text: "프로젝트가 성공했다! 당신은?",
     answers: [
       { text: "팀과 성과를 크게 축하한다", scores: { rengoku: 3, tengen: 2 } },
-      { text: "바로 다음 큰 목표를 띄운다", scores: { muzan: 3, akaza: 2 } },
-      { text: "프로세스 회고·개선점을 문서화", scores: { shinobu: 3, iguro: 2 } },
+      { text: "바로 다음 목표를 잡는다", scores: { muzan: 3, akaza: 2 } },
+      { text: "회고하고 개선점을 문서화한다", scores: { shinobu: 3, iguro: 2 } },
       // 변경: giyu 3 → nezuko 3 (조용히 다음 준비 = 네즈코 강화)
-      { text: "조용히 정리하고 다음 준비", scores: { nezuko: 3, giyu: 2 } },
+      { text: "조용히 정리하고 다음을 준비한다", scores: { nezuko: 3, giyu: 2 } },
     ],
   },
   // 12
@@ -644,7 +644,7 @@ const questions = [
   {
     text: "CEO 입장에서 회사가 위기일 때, 당신의 선택은?",
     answers: [
-      { text: "무조건 성과 달성, 냉혹한 의사결정", scores: { muzan: 3, akaza: 2 } },
+      { text: "냉정하게 성과를 먼저 챙긴다", scores: { muzan: 3, akaza: 2 } },
       { text: "조직의 안정을 먼저 지킨다", scores: { gyomei: 3, nezuko: 2 } },
       { text: "혁신과 스피드로 돌파한다", scores: { tengen: 3, rengoku: 2 } },
       { text: "규정·원칙에서 벗어나지 않는다", scores: { iguro: 3, giyu: 2 } },
@@ -662,12 +662,12 @@ const questions = [
   },
   // 15 (이구로/사네미 전용)
   {
-    text: "현장에서 규정을 어기는 직원이 발견됐다!",
+    text: "현장에서 규정을 어기는 직원이 보였다!",
     answers: [
-      { text: "규정 위반은 절대 불가, 즉각 조치", scores: { iguro: 3, sanemi: 2 } },
+      { text: "즉시 제지하고 규정대로 처리", scores: { iguro: 3, sanemi: 2 } },
       { text: "조용히 상황 파악 후 개선 유도", scores: { nezuko: 3, giyu: 2 } },
       { text: "성과에 지장 없다면 눈감아준다", scores: { muzan: 3, akaza: 2 } },
-      { text: "열정적으로 설득해 다시 합류시킨다", scores: { rengoku: 3, mitsuri: 2 } },
+      { text: "설득해서 다시 팀에 합류시킨다", scores: { rengoku: 3, mitsuri: 2 } },
     ],
   },
 ];
