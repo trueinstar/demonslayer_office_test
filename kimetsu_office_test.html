@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>귀멸의칼날 직장인 성향 테스트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 900px;
+            width: 90%;
+        }
+
+        .main-image {
+            width: 800px;
+            height: 800px;
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 20px auto;
+            object-fit: cover;
+        }
+
+        .start-image {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .question-container {
+            display: none;
+        }
+
+        .question-number {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .answers {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .answer-btn {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+        }
+
+        .answer-btn:hover {
+            border-color: #ff6b6b;
+            background: #fff5f5;
+            transform: translateY(-2px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .prev-btn {
+            background: #ddd;
+            color: #666;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-container {
+            display: none;
+        }
+
+        .character-image {
+            width: 800px;
+            height: 800px;
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .character-name {
+            font-size: 2.5em;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .character-description {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 30px 0;
+            color: #555;
+            text-align: left;
+        }
+
+        .compatibility-section {
+            margin: 40px 0;
+        }
+
+        .compatibility-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .compatibility-chars {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .compat-char {
+            text-align: center;
+        }
+
+        .compat-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .compat-name {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .result-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .result-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .share-btn {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .result-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 시작 화면 -->
+        <div id="start-screen">
+            <h1>귀멸의칼날 직장인 성향 테스트</h1>
+            <p class="subtitle">당신은 어떤 귀멸의칼날 캐릭터와 같은 직장인인가요?</p>
+            <div class="main-image start-image">
+                귀멸의칼날<br>직장인 테스트
+            </div>
+            <button class="start-btn" onclick="startTest()">테스트 시작하기</button>
+        </div>
+
+        <!-- 질문 화면 -->
+        <div id="question-screen" class="question-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="question-number">
+                <span id="current-question">1</span> / 12
+            </div>
+            <div class="question" id="question-text"></div>
+            <div class="answers" id="answers"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev-btn" id="prev-btn" onclick="prevQuestion()" disabled>이전</button>
+                <button class="nav-btn next-btn" id="next-btn" onclick="nextQuestion()" disabled>다음</button>
+            </div>
+        </div>
+
+        <!-- 결과 화면 -->
+        <div id="result-screen" class="result-container">
+            <h1>당신의 결과는...</h1>
+            <div id="result-image" class="character-image"></div>
+            <div id="result-name" class="character-name"></div>
+            <div id="result-description" class="character-description"></div>
+            
+            <div class="compatibility-section">
+                <div class="compatibility-title">💼 함께 일하면 좋은 동료</div>
+                <div class="compatibility-chars">
+                    <div class="compat-char">
+                        <div id="good-compat-image" class="compat-image"></div>
+                        <div id="good-compat-name" class="compat-name"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="compatibility-section">
+                <div class="compatibility-title">⚡ 함께 일하면 힘든 동료</div>
+                <div class="compatibility-chars">
+                    <div class="compat-char">
+                        <div id="bad-compat-image" class="compat-image"></div>
+                        <div id="bad-compat-name" class="compat-name"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-buttons">
+                <button class="result-btn restart-btn" onclick="restartTest()">다시 테스트하기</button>
+                <button class="result-btn share-btn" onclick="shareResult()">친구에게 공유하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "새로운 프로젝트가 시작됐을 때, 당신의 첫 반응은?",
+                answers: [
+                    { text: "팀원들과 함께 계획을 세우며 차근차근 준비한다", scores: { tanjiro: 3, rengoku: 2, mitsuri: 1 } },
+                    { text: "혼자서도 충분히 해낼 수 있다고 생각한다", scores: { giyu: 3, muichiro: 2, sanemi: 1 } },
+                    { text: "일단 시작해보고 부딪쳐가며 해결한다", scores: { inosuke: 3, tengen: 2, zenitsu: 1 } },
+                    { text: "세밀한 계획과 전략을 먼저 수립한다", scores: { shinobu: 3, gyomei: 2, muzan: 1 } }
+                ]
+            },
+            {
+                question: "회의 중 의견 충돌이 일어났을 때?",
+                answers: [
+                    { text: "모든 사람의 의견을 들어보고 중재한다", scores: { tanjiro: 3, gyomei: 2, mitsuri: 1 } },
+                    { text: "조용히 있다가 필요할 때만 발언한다", scores: { giyu: 3, muichiro: 2, nezuko: 1 } },
+                    { text: "내 의견을 강하게 주장한다", scores: { sanemi: 3, inosuke: 2, muzan: 1 } },
+                    { text: "논리적으로 분석해서 해결책을 제시한다", scores: { shinobu: 3, obanai: 2, akaza: 1 } }
+                ]
+            },
+            {
+                question: "팀 내에서 당신의 역할은?",
+                answers: [
+                    { text: "모든 사람을 챙기는 든든한 리더", scores: { tanjiro: 3, rengoku: 2, gyomei: 1 } },
+                    { text: "묵묵히 자기 일을 완벽하게 해내는 사람", scores: { giyu: 3, muichiro: 2, obanai: 1 } },
+                    { text: "분위기를 밝게 만드는 에너지원", scores: { mitsuri: 3, tengen: 2, zenitsu: 1 } },
+                    { text: "팀의 브레인 역할을 담당", scores: { shinobu: 3, muzan: 2, akaza: 1 } }
+                ]
+            },
+            {
+                question: "업무 스타일은?",
+                answers: [
+                    { text: "체계적이고 꼼꼼하게 진행", scores: { tanjiro: 2, gyomei: 3, shinobu: 2 } },
+                    { text: "혼자만의 시간과 공간에서 집중", scores: { giyu: 3, muichiro: 3, nezuko: 2 } },
+                    { text: "역동적이고 창의적으로 접근", scores: { tengen: 3, inosuke: 2, mitsuri: 1 } },
+                    { text: "효율성을 최우선으로 생각", scores: { muzan: 3, shinobu: 2, akaza: 2 } }
+                ]
+            },
+            {
+                question: "스트레스를 받을 때 당신은?",
+                answers: [
+                    { text: "동료들과 이야기하며 해결책을 찾는다", scores: { tanjiro: 3, mitsuri: 2, rengoku: 1 } },
+                    { text: "혼자만의 시간을 가지며 정리한다", scores: { giyu: 3, muichiro: 2, nezuko: 2 } },
+                    { text: "운동이나 취미로 스트레스를 푼다", scores: { tengen: 2, inosuke: 3, zenitsu: 1 } },
+                    { text: "차분히 분석하고 대책을 세운다", scores: { shinobu: 3, gyomei: 2, obanai: 2 } }
+                ]
+            },
+            {
+                question: "동료가 실수했을 때 당신의 반응은?",
+                answers: [
+                    { text: "따뜻하게 격려하고 함께 해결방안을 찾는다", scores: { tanjiro: 3, mitsuri: 2, rengoku: 2 } },
+                    { text: "직접적으로 지적하지 않고 조용히 도와준다", scores: { nezuko: 3, gyomei: 2, giyu: 1 } },
+                    { text: "솔직하게 문제점을 지적한다", scores: { sanemi: 3, obanai: 2, muzan: 1 } },
+                    { text: "부드럽지만 명확하게 개선점을 알려준다", scores: { shinobu: 3, akaza: 1, tengen: 1 } }
+                ]
+            },
+            {
+                question: "퇴근 후 당신은?",
+                answers: [
+                    { text: "동료들과 함께 식사나 취미 활동을 한다", scores: { mitsuri: 3, rengoku: 2, tanjiro: 1 } },
+                    { text: "조용히 집에서 혼자만의 시간을 갖는다", scores: { giyu: 3, muichiro: 2, nezuko: 2 } },
+                    { text: "활동적인 취미나 운동을 즐긴다", scores: { tengen: 3, inosuke: 2, zenitsu: 1 } },
+                    { text: "자기계발이나 공부에 시간을 투자한다", scores: { shinobu: 2, gyomei: 3, akaza: 2 } }
+                ]
+            },
+            {
+                question: "중요한 발표를 앞두고 있을 때?",
+                answers: [
+                    { text: "철저히 준비하고 동료들과 연습한다", scores: { tanjiro: 2, rengoku: 3, gyomei: 2 } },
+                    { text: "혼자 조용히 완벽하게 준비한다", scores: { giyu: 3, obanai: 2, muichiro: 1 } },
+                    { text: "긴장하지만 열심히 준비한다", scores: { zenitsu: 3, nezuko: 2, mitsuri: 1 } },
+                    { text: "자신감 있게 당당히 임한다", scores: { tengen: 3, muzan: 2, akaza: 2 } }
+                ]
+            },
+            {
+                question: "팀워크에 대한 당신의 생각은?",
+                answers: [
+                    { text: "모든 일의 기본이며 가장 중요하다", scores: { tanjiro: 3, mitsuri: 2, rengoku: 2 } },
+                    { text: "필요하지만 개인 능력이 더 중요하다", scores: { giyu: 2, muichiro: 1, muzan: 3 } },
+                    { text: "서로의 다름을 인정하며 조화를 이뤄야 한다", scores: { gyomei: 3, shinobu: 2, nezuko: 2 } },
+                    { text: "강한 개인들이 모여야 강한 팀이 된다", scores: { sanemi: 2, akaza: 3, obanai: 1 } }
+                ]
+            },
+            {
+                question: "새로운 동료가 들어왔을 때?",
+                answers: [
+                    { text: "먼저 다가가서 친근하게 맞이한다", scores: { tanjiro: 3, mitsuri: 3, rengoku: 2 } },
+                    { text: "적당한 거리를 두고 천천히 알아간다", scores: { giyu: 3, muichiro: 2, nezuko: 1 } },
+                    { text: "능력부터 파악하고 판단한다", scores: { muzan: 2, sanemi: 1, akaza: 3 } },
+                    { text: "필요할 때 도움을 주며 자연스럽게 접근한다", scores: { shinobu: 2, gyomei: 3, obanai: 1 } }
+                ]
+            },
+            {
+                question: "업무 목표 설정 시?",
+                answers: [
+                    { text: "팀 전체의 성장을 우선으로 생각한다", scores: { tanjiro: 3, rengoku: 2, gyomei: 2 } },
+                    { text: "개인의 완성도를 가장 중시한다", scores: { giyu: 3, muichiro: 2, obanai: 2 } },
+                    { text: "도전적이고 야심찬 목표를 세운다", scores: { tengen: 2, muzan: 3, akaza: 2 } },
+                    { text: "현실적이면서도 효과적인 목표를 설정한다", scores: { shinobu: 3, nezuko: 1, sanemi: 1 } }
+                ]
+            },
+            {
+                question: "가장 보람을 느끼는 순간은?",
+                answers: [
+                    { text: "팀원들이 성장하는 모습을 볼 때", scores: { tanjiro: 3, rengoku: 3, gyomei: 2 } },
+                    { text: "자신이 맡은 일을 완벽하게 해냈을 때", scores: { giyu: 3, obanai: 2, muichiro: 2 } },
+                    { text: "어려운 도전을 성공적으로 해결했을 때", scores: { tengen: 2, akaza: 3, sanemi: 2 } },
+                    { text: "모든 계획이 예상대로 진행될 때", scores: { shinobu: 3, muzan: 2, nezuko: 1 } }
+                ]
+            }
+        ];
+
+        const characters = {
+            tanjiro: {
+                name: "카마도 탄지로",
+                description: "🌟 따뜻한 마음의 팀 리더형 직장인\n\n당신은 동료들을 진심으로 배려하고, 팀의 화합을 가장 중요하게 생각하는 리더십을 가진 사람입니다. 어려운 상황에서도 포기하지 않는 끈기와 책임감이 뛰어나며, 모든 팀원이 함께 성장할 수 있도록 돕는 것에서 큰 보람을 느낍니다. 갈등 상황에서는 중재자 역할을 자연스럽게 맡으며, 상대방의 입장을 이해하려고 노력합니다.",
+                bgColor: "linear-gradient(45deg, #2E8B57, #228B22)",
+                goodCompat: "mitsuri",
+                badCompat: "muzan"
+            },
+            nezuko: {
+                name: "카마도 네즈코",
+                description: "🌙 조용한 지원군형 직장인\n\n당신은 말은 적지만 행동으로 보여주는 신뢰감 있는 동료입니다. 겉으로 드러내지는 않지만 팀원들을 세심하게 챙기고, 필요할 때 조용히 도움의 손길을 내밉니다. 자신의 감정을 잘 조절하며, 어려운 상황에서도 침착함을 유지하는 능력이 뛰어납니다. 화려하지 않지만 없어서는 안 될 소중한 팀원입니다.",
+                bgColor: "linear-gradient(45deg, #FF69B4, #FFB6C1)",
+                goodCompat: "tanjiro",
+                badCompat: "sanemi"
+            },
+            zenitsu: {
+                name: "아가츠마 젠이츠",
+                description: "⚡ 숨은 실력파형 직장인\n\n평소에는 소심하고 걱정이 많아 보이지만, 진짜 중요한 순간에는 놀라운 집중력과 능력을 발휘하는 사람입니다. 자신감은 부족하지만 실제로는 뛰어난 역량을 가지고 있으며, 동료들의 인정을 받고 싶어합니다. 긴장하는 상황이 많지만, 한번 몰입하면 누구보다 완벽한 결과를 만들어냅니다.",
+                bgColor: "linear-gradient(45deg, #FFD700, #FFA500)",
+                goodCompat: "tanjiro",
+                badCompat: "inosuke"
+            },
+            inosuke: {
+                name: "하시비라 이노스케",
+                description: "🐗 자유분방한 도전자형 직장인\n\n규칙과 관습에 얽매이지 않고 자신만의 방식으로 일을 처리하는 독특한 매력을 가진 사람입니다. 경쟁심이 강하고 새로운 도전을 두려워하지 않으며, 창의적인 아이디어로 팀에 활력을 불어넣습니다. 때로는 무모해 보일 수 있지만, 뛰어난 직감과 추진력으로 예상치 못한 성과를 거두곤 합니다.",
+                bgColor: "linear-gradient(45deg, #8B4513, #A0522D)",
+                goodCompat: "tengen",
+                badCompat: "giyu"
+            },
+            giyu: {
+                name: "토미오카 기유",
+                description: "🌊 완벽주의 개인기형 직장인\n\n말수는 적지만 자신의 업무에 대한 책임감과 전문성이 뛰어난 사람입니다. 혼자서도 완벽하게 일을 처리할 수 있는 능력을 가지고 있으며, 깊이 있는 사고력으로 복잡한 문제를 해결하는 데 탁월합니다. 감정 표현은 서투르지만, 동료들을 진심으로 생각하고 있으며, 중요한 순간에는 누구보다 믿음직한 모습을 보여줍니다.",
+                bgColor: "linear-gradient(45deg, #1E90FF, #0066CC)",
+                goodCompat: "tanjiro",
+                badCompat: "tengen"
+            },
+            rengoku: {
+                name: "렌고쿠 쿄쥬로",
+                description: "🔥 열정적인 멘토형 직장인\n\n넘치는 에너지와 긍정적인 마인드로 팀 전체에 활력을 불어넣는 사람입니다. 후배들을 아끼고 가르치는 것을 좋아하며, 어떤 어려움 앞에서도 굴복하지 않는 강인한 정신력을 가지고 있습니다. '열정'과 '노력'을 신념으로 삼고 있으며, 자신의 경험과 지혜를 아낌없이 나누어 팀 전체의 성장을 이끕니다.",
+                bgColor: "linear-gradient(45deg, #FF4500, #DC143C)",
+                goodCompat: "tanjiro",
+                badCompat: "muzan"
+            },
+            tengen: {
+                name: "우즈이 텐겐",
+                description: "💎 화려한 기획자형 직장인\n\n창의성과 센스가 뛰어나며, 모든 일을 스타일리시하게 처리하는 사람입니다. 트렌드에 민감하고 새로운 것을 추구하며, 프레젠테이션이나 기획 업무에서 탁월한 능력을 발휘합니다. 자신감이 넘치고 리더십이 있어 팀을 이끄는 데 능숙하며, 일과 삶의 균형을 중요하게 생각하는 현실적인 면도 가지고 있습니다.",
+                bgColor: "linear-gradient(45deg, #9400D3, #FF1493)",
+                goodCompat: "mitsuri",
+                badCompat: "giyu"
+            },
+            shinobu: {
+                name: "코초 시노부",
+                description: "🦋 지적인 전략가형 직장인\n\n겉으로는 온화해 보이지만 내면에는 날카로운 분석력과 전략적 사고를 가진 사람입니다. 복잡한 문제를 논리적으로 해결하는 능력이 뛰어나며, 효율성을 추구합니다. 동료들에게는 친절하지만 때로는 신랄한 조언을 하기도 하며, 항상 냉정한 판단력을 유지합니다. 전문 지식이 풍부하고 세밀한 계획 수립에 탁월합니다.",
+                bgColor: "linear-gradient(45deg, #9966CC, #DA70D6)",
+                goodCompat: "gyomei",
+                badCompat: "inosuke"
+            },
+            muichiro: {
+                name: "토키토 무이치로",
+                description: "☁️ 천재적 집중력형 직장인\n\n평소에는 멍하니 있는 것처럼 보이지만, 일에 몰입하면 놀라운 집중력과 창의성을 발휘하는 사람입니다. 자신만의 페이스를 가지고 있으며, 남들과 다른 관점으로 문제를 바라보는 능력이 뛰어납니다. 말수는 적지만 핵심을 찌르는 통찰력을 가지고 있으며, 독립적으로 업무를 처리하는 것을 선호합니다.",
+                bgColor: "linear-gradient(45deg, #87CEEB, #B0E0E6)",
+                goodCompat: "nezuko",
+                badCompat: "sanemi"
+            },
+            mitsuri: {
+                name: "칸로지 미츠리",
+                description: "💖 사교적인 분위기메이커형 직장인\n\n밝고 긍정적인 에너지로 사무실 분위기를 한층 따뜻하게 만드는 사람입니다. 동료들과의 관계를 소중히 여기며, 팀워크를 통해 시너지를 만들어내는 데 탁월합니다. 감정이 풍부하고 공감 능력이 뛰어나며, 어려운 상황에서도 희망적인 면을 찾아내는 능력이 있습니다. 회식이나 팀 빌딩 활동의 중심이 되는 사람입니다.",
+                bgColor: "linear-gradient(45deg, #FF69B4, #32CD32)",
+                goodCompat: "rengoku",
+                badCompat: "obanai"
+            },
+            sanemi: {
+                name: "시나즈가와 사네미",
+                description: "💨 직설적인 실무진형 직장인\n\n솔직하고 직설적인 성격으로 때로는 오해를 받기도 하지만, 진정으로 팀의 성과를 생각하는 사람입니다. 완벽주의적 성향이 강하고 자신과 동료들에게 높은 기준을 요구합니다. 겉으로는 까칠해 보이지만 실제로는 동료들을 깊이 신경 쓰며, 중요한 순간에는 팀을 위해 헌신하는 모습을 보여줍니다.",
+                bgColor: "linear-gradient(45deg, #708090, #2F4F4F)",
+                goodCompat: "gyomei",
+                badCompat: "mitsuri"
+            },
+            gyomei: {
+                name: "히메지마 교메이",
+                description: "⛰️ 신중한 조력자형 직장인\n\n깊은 사고력과 포용력을 가진 팀의 든든한 버팀목 같은 존재입니다. 경험이 풍부하고 신중한 판단력으로 팀의 중요한 결정에 조언을 제공합니다. 감정적으로 성숙하며 갈등 상황에서 중재자 역할을 잘 수행합니다. 후배들을 따뜻하게 챙기고, 팀 전체의 안정감을 제공하는 믿음직한 동료입니다.",
+                bgColor: "linear-gradient(45deg, #8B4513, #D2691E)",
+                goodCompat: "tanjiro",
+                badCompat: "muzan"
+            },
+            muzan: {
+                name: "키부츠지 무잔",
+                description: "👑 완벽주의 CEO형 직장인\n\n극도의 완벽주의자로 자신과 팀에 대해 매우 높은 기준을 가지고 있는 사람입니다. 효율성과 결과를 중시하며, 감정보다는 논리와 성과로 모든 것을 판단합니다. 카리스마가 있고 리더십이 강하지만, 때로는 냉정하고 비정해 보일 수 있습니다. 목표 달성을 위해서는 수단과 방법을 가리지 않는 추진력을 가지고 있습니다.",
+                bgColor: "linear-gradient(45deg, #8B0000, #000000)",
+                goodCompat: "akaza",
+                badCompat: "tanjiro"
+            },
+            akaza: {
+                name: "아카자",
+                description: "👊 경쟁적인 성과주의형 직장인\n\n강한 경쟁심과 승부욕을 가지고 있으며, 항상 더 나은 성과를 위해 노력하는 사람입니다. 개인의 역량 개발에 매우 적극적이고, 도전적인 목표를 설정하는 것을 좋아합니다. 실력을 인정받고 싶어하는 욕구가 강하며, 자신보다 뛰어난 사람을 만나면 더욱 발전하려는 의지를 보입니다. 때로는 과도한 경쟁심으로 동료들과 갈등이 생기기도 합니다.",
+                bgColor: "linear-gradient(45deg, #FF0000, #FF4500)",
+                goodCompat: "muzan",
+                badCompat: "rengoku"
+            },
+            obanai: {
+                name: "이구로 오바나이",
+                description: "🐍 신중한 관찰자형 직장인\n\n조용하지만 예리한 관찰력을 가지고 있으며, 상황을 정확히 파악하는 능력이 뛰어난 사람입니다. 신중하고 계획적으로 일을 처리하며, 디테일을 놓치지 않는 세심함을 가지고 있습니다. 쉽게 마음을 열지는 않지만, 한번 신뢰 관계가 형성되면 매우 충성스럽고 믿음직한 동료가 됩니다. 품질 관리나 검토 업무에 특히 뛰어난 모습을 보입니다.",
+                bgColor: "linear-gradient(45deg, #4B0082, #663399)",
+                goodCompat: "mitsuri",
+                badCompat: "tengen"
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startTest() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('question-screen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const answersDiv = document.getElementById('answers');
+            answersDiv.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = answer.text;
+                button.onclick = () => selectAnswer(index);
+                answersDiv.appendChild(button);
+            });
+
+            updateProgress();
+            updateNavButtons();
+        }
+
+        function selectAnswer(answerIndex) {
+            answers[currentQuestion] = answerIndex;
+            
+            // 선택된 답변 하이라이트
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            answerButtons.forEach((btn, index) => {
+                if (index === answerIndex) {
+                    btn.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+                    btn.style.color = 'white';
+                    btn.style.borderColor = '#ff6b6b';
+                } else {
+                    btn.style.background = 'white';
+                    btn.style.color = 'black';
+                    btn.style.borderColor = '#ddd';
+                }
+            });
+            
+            updateNavButtons();
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] !== undefined) {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                
+                // 이전에 선택한 답변이 있다면 하이라이트
+                if (answers[currentQuestion] !== undefined) {
+                    const answerButtons = document.querySelectorAll('.answer-btn');
+                    answerButtons.forEach((btn, index) => {
+                        if (index === answers[currentQuestion]) {
+                            btn.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+                            btn.style.color = 'white';
+                            btn.style.borderColor = '#ff6b6b';
+                        }
+                    });
+                }
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = answers[currentQuestion] === undefined;
+            
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = '결과보기';
+            } else {
+                nextBtn.textContent = '다음';
+            }
+        }
+
+        function calculateResult() {
+            const scores = {};
+            
+            // 모든 캐릭터의 점수를 0으로 초기화
+            Object.keys(characters).forEach(char => {
+                scores[char] = 0;
+            });
+
+            // 답변에 따른 점수 계산
+            answers.forEach((answerIndex, questionIndex) => {
+                const question = questions[questionIndex];
+                const selectedAnswer = question.answers[answerIndex];
+                
+                Object.entries(selectedAnswer.scores).forEach(([char, score]) => {
+                    scores[char] += score;
+                });
+            });
+
+            // 가장 높은 점수를 받은 캐릭터 찾기
+            let maxScore = 0;
+            let resultChar = 'tanjiro';
+            
+            Object.entries(scores).forEach(([char, score]) => {
+                if (score > maxScore) {
+                    maxScore = score;
+                    resultChar = char;
+                }
+            });
+
+            return resultChar;
+        }
+
+        function showResult() {
+            const resultChar = calculateResult();
+            const character = characters[resultChar];
+            
+            document.getElementById('question-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            
+            // 결과 캐릭터 정보 표시
+            const resultImage = document.getElementById('result-image');
+            resultImage.style.background = character.bgColor;
+            resultImage.textContent = character.name;
+            
+            document.getElementById('result-name').textContent = character.name;
+            document.getElementById('result-description').textContent = character.description;
+            
+            // 궁합 캐릭터 정보 표시
+            const goodCompat = characters[character.goodCompat];
+            const badCompat = characters[character.badCompat];
+            
+            const goodCompatImage = document.getElementById('good-compat-image');
+            goodCompatImage.style.background = goodCompat.bgColor;
+            goodCompatImage.textContent = goodCompat.name;
+            document.getElementById('good-compat-name').textContent = goodCompat.name;
+            
+            const badCompatImage = document.getElementById('bad-compat-image');
+            badCompatImage.style.background = badCompat.bgColor;
+            badCompatImage.textContent = badCompat.name;
+            document.getElementById('bad-compat-name').textContent = badCompat.name;
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = [];
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('start-screen').style.display = 'block';
+        }
+
+        function shareResult() {
+            const resultChar = calculateResult();
+            const character = characters[resultChar];
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '귀멸의칼날 직장인 성향 테스트',
+                    text: `나의 결과는 "${character.name}"! 당신도 테스트해보세요!`,
+                    url: window.location.href
+                });
+            } else {
+                // 클립보드에 복사
+                const shareText = `나의 귀멸의칼날 직장인 성향 테스트 결과는 "${character.name}"입니다! 당신도 테스트해보세요: ${window.location.href}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('결과가 클립보드에 복사되었습니다!');
+                });
+            }
+        }
+
+        // 초기 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            // 시작 화면 표시
+            document.getElementById('start-screen').style.display = 'block';
+            document.getElementById('question-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
